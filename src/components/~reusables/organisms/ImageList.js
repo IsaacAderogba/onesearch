@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { medium_space, normal_space } from "../variables/spacing";
-import { grey } from "../variables/colors"
+import { grey, theme_secondary } from "../variables/colors"
 import ImageItem from "../molecules/ImageItem";
 import ComponentLoader from "../organisms/ComponentLoader";
 
@@ -59,6 +59,10 @@ const StyledIL = styled.section`
 
     i:last-child {
       margin-left: 8px;
+    }
+
+    i:hover {
+      color: ${theme_secondary}
     }
   }
 
