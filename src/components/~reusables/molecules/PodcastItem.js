@@ -71,10 +71,8 @@ const StyledPI = styled(animated.article)`
     }
 
     flex-basis: 100px;
-    border: 1px solid red;
 
     .img-container {
-      border: 1px solid red;
       height: 100px;
       width: 100px;
     }

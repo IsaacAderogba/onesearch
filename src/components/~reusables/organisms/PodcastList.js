@@ -31,14 +31,20 @@ const PodcastList = ({ title, podcasts, windowWidth, podcastLoader }) => {
     }
   }
 
-  
+  const onClickLeftArrow = () => {
+    if(podcastIndex - numPodcasts < 0) {
+      console.log('no more items!')
+    } else {
+      setPodcastIndex(podcastIndex - numPodcasts)
+    }
+  }
 
   return (
     <StyledPL>
       <div>
         <h2>{title}</h2>
         <div className="title-section">
-          <i className="material-icons">keyboard_arrow_left</i>
+          <i onClick={onClickLeftArrow} className="material-icons">keyboard_arrow_left</i>
           <i onClick={onClickRightArrow} className="material-icons">keyboard_arrow_right</i>
         </div>
       </div>

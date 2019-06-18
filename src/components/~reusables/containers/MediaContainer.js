@@ -11,16 +11,19 @@ const MediaContainer = ({
   windowWidth,
   imageLoader,
   videoLoader,
-  podcastLoader
+  podcastLoader,
+  fetchMoreImages
 }) => {
   return (
     <StyledMediaContainer>
-      {<PodcastList
-        title="Podcasts"
-        podcasts={podcasts}
-        windowWidth={windowWidth}
-        podcastLoader={podcastLoader}
-      />}
+      {
+        <PodcastList
+          title="Podcasts"
+          podcasts={podcasts}
+          windowWidth={windowWidth}
+          podcastLoader={podcastLoader}
+        />
+      }
       <div>
         <VideoList
           title="Videos"
@@ -28,7 +31,12 @@ const MediaContainer = ({
           windowWidth={windowWidth}
           videoLoader={videoLoader}
         />
-        <ImageList title="Images" images={images} imageLoader={imageLoader} />
+        <ImageList
+          title="Images"
+          images={images}
+          imageLoader={imageLoader}
+          fetchMoreImages={fetchMoreImages}
+        />
       </div>
     </StyledMediaContainer>
   );

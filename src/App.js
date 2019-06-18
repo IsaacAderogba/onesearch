@@ -9,10 +9,15 @@ import listen from "./apis/listenNotes";
 function App() {
   const [images, setImages] = useState([]);
   const [imageLoader, setImageLoader] = useState(true);
+  const [imgPage, setImgPage] = useState(1);
+
   const [videos, setVideos] = useState([]);
   const [videoLoader, setVideoLoader] = useState(true);
+
   const [podcasts, setPodcasts] = useState([]);
   const [podcastLoader, setPodcastLoader] = useState(true);
+
+  const [searchTerm, setSearchTerm] = useState("");
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
   useEffect(() => {
@@ -20,23 +25,38 @@ function App() {
   });
 
   const onSearchSubmit = term => {
+    setSearchTerm(term);
     fetchImages(term);
     fetchVideos(term);
     fetchPodcasts(term);
   };
 
   const fetchImages = term => {
+    setImgPage(1);
     setImageLoader(true);
     unsplash
       .get("/photos", {
-        params: { query: term }
+        params: { query: term, per_page: 30 }
       })
       .then(response => {
-        console.log("IMAGES", response.data.results)
+        console.log(response.data.results);
         setImages(response.data.results);
       })
-      .catch(err => {
-        console.log(err);
+      .finally(() => {
+        setImageLoader(false);
+      });
+  };
+
+  const fetchMoreImages = () => {
+    setImageLoader(true);
+    let imgPgIndex = imgPage + 1;
+    setImgPage(imgPage + 1);
+    unsplash
+      .get("/photos", {
+        params: { query: searchTerm, per_page: 30, page: imgPgIndex }
+      })
+      .then(response => {
+        setImages([...images, ...response.data.results]);
       })
       .finally(() => {
         setImageLoader(false);
@@ -52,11 +72,8 @@ function App() {
         }
       })
       .then(response => {
-        console.log("VIDEOS", response.data.items)
+        console.log(response.data.items)
         setVideos(response.data.items);
-      })
-      .catch(err => {
-        console.log(err);
       })
       .finally(() => {
         setVideoLoader(false);
@@ -72,11 +89,7 @@ function App() {
         }
       })
       .then(response => {
-        console.log("PODCASTS", response.data.results)
         setPodcasts(response.data.results);
-      })
-      .catch(err => {
-        console.log(err);
       })
       .finally(() => {
         setPodcastLoader(false);
@@ -93,6 +106,7 @@ function App() {
           onSearchSubmit={onSearchSubmit}
           images={images}
           imageLoader={imageLoader}
+          fetchMoreImages={fetchMoreImages}
           videos={videos}
           videoLoader={videoLoader}
           podcasts={podcasts}

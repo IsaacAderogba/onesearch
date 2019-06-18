@@ -22,14 +22,20 @@ const VideoList = ({ title, videos, windowWidth, videoLoader }) => {
     }
   };
 
-  
+  const onClickLeftArrow = () => {
+    if(videoIndex - numVideos < 0) {
+      console.log('no more items!')
+    } else {
+      setVideoIndex(videoIndex - numVideos)
+    }
+  }
 
   return (
     <StyledVL>
       <header>
         <h2>{title}</h2>
         <div className="title-section">
-          <i className="material-icons">keyboard_arrow_left</i>
+          <i onClick={onClickLeftArrow} className="material-icons">keyboard_arrow_left</i>
           <i onClick={onClickRightArrow} className="material-icons">keyboard_arrow_right</i>
         </div>
       </header>
@@ -55,7 +61,6 @@ const VideoList = ({ title, videos, windowWidth, videoLoader }) => {
 const StyledVL = styled.section`
   flex-basis: 850px;
   flex-grow: 1;
-  flex-shrink: 1;
   padding: ${normal_space} ${normal_space} 0 ${medium_space};
   border-right: 1px solid ${border_color};
 

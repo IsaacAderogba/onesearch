@@ -5,16 +5,25 @@ import { lightgrey, grey, theme_secondary } from "../variables/colors"
 import ImageItem from "../molecules/ImageItem";
 import ComponentLoader from "../organisms/ComponentLoader";
 
-const ImageList = ({ title, images, imageLoader }) => {
+const ImageList = ({ title, images, imageLoader, fetchMoreImages }) => {
   const [imageIndex, setImageIndex] = useState(0);
 
   let numImages = 2;
+  console.log(images);
 
   const onClickRightArrow = () => {
     if(imageIndex + numImages*2 >= images.length) {
-      console.log('Fetch more items !')
+      fetchMoreImages();
     } else {
       setImageIndex(imageIndex + numImages);
+    }
+  }
+
+  const onClickLeftArrow = () => {
+    if(imageIndex - numImages < 0) {
+      console.log('no more items!')
+    } else {
+      setImageIndex(imageIndex - numImages)
     }
   }
 
@@ -23,7 +32,7 @@ const ImageList = ({ title, images, imageLoader }) => {
       <header>
         <h2>{title}</h2>
         <div className="title-section">
-          <i className="material-icons">keyboard_arrow_left</i>
+          <i onClick={onClickLeftArrow} className="material-icons">keyboard_arrow_left</i>
           <i onClick={onClickRightArrow} className="material-icons">keyboard_arrow_right</i>
         </div>
       </header>
@@ -51,7 +60,6 @@ const ImageList = ({ title, images, imageLoader }) => {
 const StyledIL = styled.section`
   flex-basis: 415px;
   flex-grow: 1;
-  flex-shrink: 1;
   padding: ${normal_space} ${medium_space} 0 ${normal_space};
   overflow: hidden;
 
