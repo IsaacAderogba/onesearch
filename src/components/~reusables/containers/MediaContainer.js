@@ -12,7 +12,8 @@ const MediaContainer = ({
   imageLoader,
   videoLoader,
   podcastLoader,
-  fetchMoreImages
+  fetchMoreImages,
+  fetchMoreVideos
 }) => {
   return (
     <StyledMediaContainer>
@@ -30,6 +31,7 @@ const MediaContainer = ({
           videos={videos}
           windowWidth={windowWidth}
           videoLoader={videoLoader}
+          fetchMoreVideos={fetchMoreVideos}
         />
         <ImageList
           title="Images"

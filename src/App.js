@@ -13,6 +13,7 @@ function App() {
 
   const [videos, setVideos] = useState([]);
   const [videoLoader, setVideoLoader] = useState(true);
+  const [videoPgToken, setVideoPgToken] = useState(null);
 
   const [podcasts, setPodcasts] = useState([]);
   const [podcastLoader, setPodcastLoader] = useState(true);
@@ -26,9 +27,9 @@ function App() {
 
   const onSearchSubmit = term => {
     setSearchTerm(term);
-    fetchImages(term);
+    // fetchImages(term);
     fetchVideos(term);
-    fetchPodcasts(term);
+    // fetchPodcasts(term);
   };
 
   const fetchImages = term => {
@@ -39,7 +40,6 @@ function App() {
         params: { query: term, per_page: 30 }
       })
       .then(response => {
-        console.log(response.data.results);
         setImages(response.data.results);
       })
       .finally(() => {
@@ -72,8 +72,26 @@ function App() {
         }
       })
       .then(response => {
-        console.log(response.data.items)
+        setVideoPgToken(response.data.nextPageToken);
         setVideos(response.data.items);
+      })
+      .finally(() => {
+        setVideoLoader(false);
+      });
+  };
+
+  const fetchMoreVideos = () => {
+    setVideoLoader(true);
+    youtube
+      .get("/search", {
+        params: {
+          q: searchTerm,
+          pageToken: videoPgToken
+        }
+      })
+      .then(response => {
+        setVideoPgToken(response.data.nextPageToken);
+        setVideos([...videos, ...response.data.items]);
       })
       .finally(() => {
         setVideoLoader(false);
@@ -112,6 +130,7 @@ function App() {
           podcasts={podcasts}
           podcastLoader={podcastLoader}
           windowWidth={windowWidth}
+          fetchMoreVideos={fetchMoreVideos}
         />
       )}
     />

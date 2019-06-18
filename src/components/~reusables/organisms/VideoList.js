@@ -6,7 +6,7 @@ import VideoItem from "../molecules/VideoItem";
 import ComponentLoader from "../organisms/ComponentLoader";
 import { lightgrey, grey, theme_secondary } from "../variables/colors";
 
-const VideoList = ({ title, videos, windowWidth, videoLoader }) => {
+const VideoList = ({ title, videos, windowWidth, videoLoader, fetchMoreVideos }) => {
   const [videoIndex, setVideoIndex] = useState(0);
 
   let numVideos = 3;
@@ -14,9 +14,10 @@ const VideoList = ({ title, videos, windowWidth, videoLoader }) => {
     numVideos = 2;
   }
 
+  console.log(videos);
   const onClickRightArrow = () => {
     if (videoIndex + numVideos * 2 >= videos.length) {
-      console.log("Fetch more items !");
+      fetchMoreVideos();
     } else {
       setVideoIndex(videoIndex + numVideos);
     }
