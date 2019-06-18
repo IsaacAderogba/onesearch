@@ -21,7 +21,7 @@ const StyledDH = styled.nav`
     max-width: 1440px;
     width: 100%;
     background-color: white;
-    height: 48px;
+    height: 60px;
     margin: 0 auto;
     display: flex;
     border-top: 1px solid ${border_color};

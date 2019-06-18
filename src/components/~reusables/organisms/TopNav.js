@@ -24,7 +24,7 @@ const StyledDH = styled.nav`
   border-bottom: 1px solid ${border_color};
 
   @media only screen and (max-width: 499px) {
-    height: 48px;
+    height: 60px;
 
     .navlink {
       display: none;

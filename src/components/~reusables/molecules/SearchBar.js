@@ -40,11 +40,10 @@ const StyledSearchBar = styled.form`
     border-right: 1px solid ${border_color};
 
     input {
+
         border: none;
-        padding-left: ${normal_space}
+        padding-left: ${normal_space};
         flex-basis: 800px;
-        height: 98%;
-        margin-bottom: 2%;
         font-size: ${base_font_size};
         flex-grow: 1;
         outline: none;
