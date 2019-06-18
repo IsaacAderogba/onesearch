@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { Route } from "react-router-dom";
-
 import HomePage from "./components/pages/HomePage/HomePage";
 import "./App.css";
 import youtube from "./apis/youtube";
@@ -28,12 +27,12 @@ function App() {
 
   const fetchImages = term => {
     setImageLoader(true);
-
     unsplash
       .get("/photos", {
         params: { query: term }
       })
       .then(response => {
+        console.log("IMAGES", response.data.results)
         setImages(response.data.results);
       })
       .catch(err => {
@@ -46,7 +45,6 @@ function App() {
 
   const fetchVideos = term => {
     setVideoLoader(true);
-
     youtube
       .get("/search", {
         params: {
@@ -54,6 +52,7 @@ function App() {
         }
       })
       .then(response => {
+        console.log("VIDEOS", response.data.items)
         setVideos(response.data.items);
       })
       .catch(err => {
@@ -66,7 +65,6 @@ function App() {
 
   const fetchPodcasts = term => {
     setPodcastLoader(true);
-
     listen
       .get("/search", {
         params: {
@@ -74,6 +72,7 @@ function App() {
         }
       })
       .then(response => {
+        console.log("PODCASTS", response.data.results)
         setPodcasts(response.data.results);
       })
       .catch(err => {

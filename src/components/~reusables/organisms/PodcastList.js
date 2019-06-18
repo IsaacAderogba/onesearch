@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import PodcastItem from "../molecules/PodcastItem.js";
 import { medium_space, normal_space } from "../variables/spacing";
@@ -7,6 +7,8 @@ import ComponentLoader from "../organisms/ComponentLoader";
 import { lightgrey, grey, theme_secondary } from "../variables/colors";
 
 const PodcastList = ({ title, podcasts, windowWidth, podcastLoader }) => {
+  const [podcastIndex, setPodcastIndex] = useState(0);
+
   let numPodcasts;
 
   if (windowWidth > 1250) {
@@ -21,13 +23,23 @@ const PodcastList = ({ title, podcasts, windowWidth, podcastLoader }) => {
     numPodcasts = 2;
   }
 
+  const onClickRightArrow = () => {
+    if(podcastIndex + numPodcasts*2 >= podcasts.length) {
+      console.log('Fetch more items !')
+    } else {
+      setPodcastIndex(podcastIndex + numPodcasts);
+    }
+  }
+
+  
+
   return (
     <StyledPL>
       <div>
         <h2>{title}</h2>
         <div className="title-section">
           <i className="material-icons">keyboard_arrow_left</i>
-          <i className="material-icons">keyboard_arrow_right</i>
+          <i onClick={onClickRightArrow} className="material-icons">keyboard_arrow_right</i>
         </div>
       </div>
 
@@ -36,7 +48,7 @@ const PodcastList = ({ title, podcasts, windowWidth, podcastLoader }) => {
       ) : (
         <div>
           {podcasts.length > 0
-            ? podcasts.slice(0, numPodcasts).map(podcast => {
+            ? podcasts.slice(podcastIndex, numPodcasts + podcastIndex).map(podcast => {
                 return (
                   <PodcastItem
                     key={podcast.id}

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { medium_space, normal_space } from "../variables/spacing";
 import { border_color } from "../variables/colors";
@@ -7,10 +7,22 @@ import ComponentLoader from "../organisms/ComponentLoader";
 import { lightgrey, grey, theme_secondary } from "../variables/colors";
 
 const VideoList = ({ title, videos, windowWidth, videoLoader }) => {
+  const [videoIndex, setVideoIndex] = useState(0);
+
   let numVideos = 3;
   if (windowWidth < 850) {
     numVideos = 2;
   }
+
+  const onClickRightArrow = () => {
+    if (videoIndex + numVideos * 2 >= videos.length) {
+      console.log("Fetch more items !");
+    } else {
+      setVideoIndex(videoIndex + numVideos);
+    }
+  };
+
+  
 
   return (
     <StyledVL>
@@ -18,13 +30,13 @@ const VideoList = ({ title, videos, windowWidth, videoLoader }) => {
         <h2>{title}</h2>
         <div className="title-section">
           <i className="material-icons">keyboard_arrow_left</i>
-          <i className="material-icons">keyboard_arrow_right</i>
+          <i onClick={onClickRightArrow} className="material-icons">keyboard_arrow_right</i>
         </div>
       </header>
       {videoLoader ? (
         <ComponentLoader />
       ) : videos.length > 0 ? (
-        videos.slice(0, numVideos).map(video => {
+        videos.slice(videoIndex, numVideos + videoIndex).map(video => {
           return (
             <VideoItem
               key={video.id.videoId}
@@ -54,7 +66,6 @@ const StyledVL = styled.section`
   }
 
   .title-section {
-
     i {
       font-size: 30px;
       cursor: pointer;
@@ -66,7 +77,7 @@ const StyledVL = styled.section`
     }
 
     i:hover {
-      color: ${theme_secondary}
+      color: ${theme_secondary};
     }
   }
 

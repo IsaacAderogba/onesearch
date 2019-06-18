@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { medium_space, normal_space } from "../variables/spacing";
 import { lightgrey, grey, theme_secondary } from "../variables/colors"
@@ -6,13 +6,25 @@ import ImageItem from "../molecules/ImageItem";
 import ComponentLoader from "../organisms/ComponentLoader";
 
 const ImageList = ({ title, images, imageLoader }) => {
+  const [imageIndex, setImageIndex] = useState(0);
+
+  let numImages = 2;
+
+  const onClickRightArrow = () => {
+    if(imageIndex + numImages*2 >= images.length) {
+      console.log('Fetch more items !')
+    } else {
+      setImageIndex(imageIndex + numImages);
+    }
+  }
+
   return (
     <StyledIL>
       <header>
         <h2>{title}</h2>
         <div className="title-section">
           <i className="material-icons">keyboard_arrow_left</i>
-          <i className="material-icons">keyboard_arrow_right</i>
+          <i onClick={onClickRightArrow} className="material-icons">keyboard_arrow_right</i>
         </div>
       </header>
       {imageLoader ? (
@@ -20,7 +32,7 @@ const ImageList = ({ title, images, imageLoader }) => {
       ) : (
         <div>
           {images.length > 0
-            ? images.slice(0, 2).map(image => {
+            ? images.slice(imageIndex, numImages + imageIndex).map(image => {
                 return (
                   <ImageItem
                     key={image.id}
