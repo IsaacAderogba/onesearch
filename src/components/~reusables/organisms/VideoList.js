@@ -14,13 +14,13 @@ const VideoList = ({ title, videos, windowWidth, videoLoader }) => {
 
   return (
     <StyledVL>
-      <div>
+      <header>
         <h2>{title}</h2>
         <div className="title-section">
           <i className="material-icons">keyboard_arrow_left</i>
           <i className="material-icons">keyboard_arrow_right</i>
         </div>
-      </div>
+      </header>
       {videoLoader ? (
         <ComponentLoader />
       ) : videos.length > 0 ? (
@@ -47,13 +47,13 @@ const StyledVL = styled.section`
   padding: ${normal_space} ${normal_space} 0 ${medium_space};
   border-right: 1px solid ${border_color};
 
-  div {
+  > header {
     display: flex;
     justify-content: space-between;
+    align-items: center;
   }
 
   .title-section {
-    align-items: center;
 
     i {
       font-size: 30px;

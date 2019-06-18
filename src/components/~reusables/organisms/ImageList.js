@@ -8,13 +8,13 @@ import ComponentLoader from "../organisms/ComponentLoader";
 const ImageList = ({ title, images, imageLoader }) => {
   return (
     <StyledIL>
-      <div>
+      <header>
         <h2>{title}</h2>
         <div className="title-section">
           <i className="material-icons">keyboard_arrow_left</i>
           <i className="material-icons">keyboard_arrow_right</i>
         </div>
-      </div>
+      </header>
       {imageLoader ? (
         <ComponentLoader />
       ) : (
@@ -43,13 +43,13 @@ const StyledIL = styled.section`
   padding: ${normal_space} ${medium_space} 0 ${normal_space};
   overflow: hidden;
 
-  div {
+  > header {
     display: flex;
     justify-content: space-between;
+    align-items: center;
   }
 
   .title-section {
-    align-items: center;
 
     i {
       font-size: 30px;
