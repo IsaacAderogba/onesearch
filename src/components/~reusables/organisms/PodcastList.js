@@ -4,7 +4,7 @@ import PodcastItem from "../molecules/PodcastItem.js";
 import { medium_space, normal_space } from "../variables/spacing";
 import { border_color } from "../variables/colors";
 import ComponentLoader from "../organisms/ComponentLoader";
-import { grey, theme_secondary } from "../variables/colors";
+import { lightgrey, grey, theme_secondary } from "../variables/colors";
 
 const PodcastList = ({ title, podcasts, windowWidth, podcastLoader }) => {
   let numPodcasts;
@@ -69,7 +69,7 @@ const StyledPL = styled.section`
     i {
       font-size: 30px;
       cursor: pointer;
-      color: ${grey}
+      color: ${lightgrey}
     }
 
     i:last-child {

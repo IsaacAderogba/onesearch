@@ -4,7 +4,7 @@ import { medium_space, normal_space } from "../variables/spacing";
 import { border_color } from "../variables/colors";
 import VideoItem from "../molecules/VideoItem";
 import ComponentLoader from "../organisms/ComponentLoader";
-import { grey, theme_secondary } from "../variables/colors";
+import { lightgrey, grey, theme_secondary } from "../variables/colors";
 
 const VideoList = ({ title, videos, windowWidth, videoLoader }) => {
   let numVideos = 3;
@@ -58,7 +58,7 @@ const StyledVL = styled.section`
     i {
       font-size: 30px;
       cursor: pointer;
-      color: ${grey};
+      color: ${lightgrey};
     }
 
     i:last-child {

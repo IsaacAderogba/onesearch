@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { medium_space, normal_space } from "../variables/spacing";
-import { grey, theme_secondary } from "../variables/colors"
+import { lightgrey, grey, theme_secondary } from "../variables/colors"
 import ImageItem from "../molecules/ImageItem";
 import ComponentLoader from "../organisms/ComponentLoader";
 
@@ -54,7 +54,7 @@ const StyledIL = styled.section`
     i {
       font-size: 30px;
       cursor: pointer;
-      color: ${grey};
+      color: ${lightgrey};
     }
 
     i:last-child {
