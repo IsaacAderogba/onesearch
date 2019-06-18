@@ -27,9 +27,9 @@ function App() {
 
   const onSearchSubmit = term => {
     setSearchTerm(term);
-    // fetchImages(term);
+    fetchImages(term);
     fetchVideos(term);
-    // fetchPodcasts(term);
+    fetchPodcasts(term);
   };
 
   const fetchImages = term => {
@@ -121,6 +121,7 @@ function App() {
       render={routeProps => (
         <HomePage
           {...routeProps}
+          searchTerm={searchTerm}
           onSearchSubmit={onSearchSubmit}
           images={images}
           imageLoader={imageLoader}

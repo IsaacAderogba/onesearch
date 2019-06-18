@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { medium_space, normal_space } from "../variables/spacing";
 import { border_color } from "../variables/colors";
@@ -6,17 +6,28 @@ import VideoItem from "../molecules/VideoItem";
 import ComponentLoader from "../organisms/ComponentLoader";
 import { lightgrey, grey, theme_secondary } from "../variables/colors";
 
-const VideoList = ({ title, videos, windowWidth, videoLoader, fetchMoreVideos }) => {
+const VideoList = ({
+  title,
+  videos,
+  windowWidth,
+  videoLoader,
+  fetchMoreVideos,
+  searchTerm
+}) => {
   const [videoIndex, setVideoIndex] = useState(0);
+
+  useEffect(() => {
+    setVideoIndex(0);
+  }, [searchTerm]);
 
   let numVideos = 3;
   if (windowWidth < 850) {
     numVideos = 2;
   }
 
-  console.log(videos);
   const onClickRightArrow = () => {
     if (videoIndex + numVideos * 2 >= videos.length) {
+      // setVideoIndex(0);
       fetchMoreVideos();
     } else {
       setVideoIndex(videoIndex + numVideos);
@@ -24,20 +35,24 @@ const VideoList = ({ title, videos, windowWidth, videoLoader, fetchMoreVideos })
   };
 
   const onClickLeftArrow = () => {
-    if(videoIndex - numVideos < 0) {
-      console.log('no more items!')
+    if (videoIndex - numVideos < 0) {
+      console.log("no more items!");
     } else {
-      setVideoIndex(videoIndex - numVideos)
+      setVideoIndex(videoIndex - numVideos);
     }
-  }
+  };
 
   return (
     <StyledVL>
       <header>
         <h2>{title}</h2>
         <div className="title-section">
-          <i onClick={onClickLeftArrow} className="material-icons">keyboard_arrow_left</i>
-          <i onClick={onClickRightArrow} className="material-icons">keyboard_arrow_right</i>
+          <i onClick={onClickLeftArrow} className="material-icons">
+            keyboard_arrow_left
+          </i>
+          <i onClick={onClickRightArrow} className="material-icons">
+            keyboard_arrow_right
+          </i>
         </div>
       </header>
       {videoLoader ? (

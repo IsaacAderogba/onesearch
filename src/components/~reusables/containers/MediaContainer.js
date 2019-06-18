@@ -13,7 +13,8 @@ const MediaContainer = ({
   videoLoader,
   podcastLoader,
   fetchMoreImages,
-  fetchMoreVideos
+  fetchMoreVideos,
+  searchTerm
 }) => {
   return (
     <StyledMediaContainer>
@@ -23,6 +24,7 @@ const MediaContainer = ({
           podcasts={podcasts}
           windowWidth={windowWidth}
           podcastLoader={podcastLoader}
+          searchTerm={searchTerm}
         />
       }
       <div>
@@ -32,12 +34,14 @@ const MediaContainer = ({
           windowWidth={windowWidth}
           videoLoader={videoLoader}
           fetchMoreVideos={fetchMoreVideos}
+          searchTerm={searchTerm}
         />
         <ImageList
           title="Images"
           images={images}
           imageLoader={imageLoader}
           fetchMoreImages={fetchMoreImages}
+          searchTerm={searchTerm}
         />
       </div>
     </StyledMediaContainer>

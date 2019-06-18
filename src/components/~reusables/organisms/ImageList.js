@@ -1,39 +1,53 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { medium_space, normal_space } from "../variables/spacing";
-import { lightgrey, grey, theme_secondary } from "../variables/colors"
+import { lightgrey, grey, theme_secondary } from "../variables/colors";
 import ImageItem from "../molecules/ImageItem";
 import ComponentLoader from "../organisms/ComponentLoader";
 
-const ImageList = ({ title, images, imageLoader, fetchMoreImages }) => {
+const ImageList = ({
+  title,
+  images,
+  imageLoader,
+  fetchMoreImages,
+  searchTerm
+}) => {
   const [imageIndex, setImageIndex] = useState(0);
 
+  useEffect(() => {
+    setImageIndex(0);
+  }, [searchTerm]);
+
   let numImages = 2;
-  console.log(images);
 
   const onClickRightArrow = () => {
-    if(imageIndex + numImages*2 >= images.length) {
+    if (imageIndex + numImages * 2 >= images.length) {
+      // setImageIndex(0);
       fetchMoreImages();
     } else {
       setImageIndex(imageIndex + numImages);
     }
-  }
+  };
 
   const onClickLeftArrow = () => {
-    if(imageIndex - numImages < 0) {
-      console.log('no more items!')
+    if (imageIndex - numImages < 0) {
+      console.log("no more items!");
     } else {
-      setImageIndex(imageIndex - numImages)
+      setImageIndex(imageIndex - numImages);
     }
-  }
+  };
 
   return (
     <StyledIL>
       <header>
         <h2>{title}</h2>
         <div className="title-section">
-          <i onClick={onClickLeftArrow} className="material-icons">keyboard_arrow_left</i>
-          <i onClick={onClickRightArrow} className="material-icons">keyboard_arrow_right</i>
+          <i onClick={onClickLeftArrow} className="material-icons">
+            keyboard_arrow_left
+          </i>
+          <i onClick={onClickRightArrow} className="material-icons">
+            keyboard_arrow_right
+          </i>
         </div>
       </header>
       {imageLoader ? (
@@ -70,7 +84,6 @@ const StyledIL = styled.section`
   }
 
   .title-section {
-
     i {
       font-size: 30px;
       cursor: pointer;
@@ -82,7 +95,7 @@ const StyledIL = styled.section`
     }
 
     i:hover {
-      color: ${theme_secondary}
+      color: ${theme_secondary};
     }
   }
 
