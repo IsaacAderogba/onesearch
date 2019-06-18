@@ -4,14 +4,31 @@ import PodcastList from "../organisms/PodcastList";
 import VideoList from "../organisms/VideoList";
 import ImageList from "../organisms/ImageList";
 
-
-const MediaContainer = ({images, videos, podcasts, windowWidth}) => {
+const MediaContainer = ({
+  images,
+  videos,
+  podcasts,
+  windowWidth,
+  imageLoader,
+  videoLoader,
+  podcastLoader
+}) => {
   return (
     <StyledMediaContainer>
-      <PodcastList title="Podcast Results" podcasts={podcasts} windowWidth={windowWidth} />
+      {<PodcastList
+        title="Podcast Results"
+        podcasts={podcasts}
+        windowWidth={windowWidth}
+        podcastLoader={podcastLoader}
+      />}
       <div>
-        <VideoList title="Video Results" videos={videos} windowWidth={windowWidth} />
-        <ImageList title="Image Results" images={images} />
+        <VideoList
+          title="Video Results"
+          videos={videos}
+          windowWidth={windowWidth}
+          videoLoader={videoLoader}
+        />
+        <ImageList title="Image Results" images={images} imageLoader={imageLoader} />
       </div>
     </StyledMediaContainer>
   );
@@ -23,11 +40,11 @@ const StyledMediaContainer = styled.div`
   flex-shrink: 1;
 
   > div {
-      display: flex;
+    display: flex;
 
-      @media only screen and (max-width: 499px) {
-        flex-direction: column;
-      }
+    @media only screen and (max-width: 499px) {
+      flex-direction: column;
+    }
   }
 `;
 

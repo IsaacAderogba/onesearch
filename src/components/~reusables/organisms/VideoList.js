@@ -3,8 +3,9 @@ import styled from "styled-components";
 import { medium_space, normal_space } from "../variables/spacing";
 import { border_color } from "../variables/colors"
 import VideoItem from "../molecules/VideoItem"
+import ComponentLoader from "../organisms/ComponentLoader"
 
-const VideoList = ({ title, videos, windowWidth }) => {
+const VideoList = ({ title, videos, windowWidth, videoLoader }) => {
   let numVideos = 3;
   if(windowWidth < 850) {
     numVideos = 2;
@@ -13,7 +14,8 @@ const VideoList = ({ title, videos, windowWidth }) => {
   return (
     <StyledVL>
       <h2>{title}</h2>
-      {videos.length > 0
+      {videoLoader ? <ComponentLoader /> : 
+      videos.length > 0
           ? videos.slice(0, numVideos).map(video => {
               return (
                 <VideoItem

@@ -2,26 +2,31 @@ import React from "react";
 import styled from "styled-components";
 import { medium_space, normal_space } from "../variables/spacing";
 import ImageItem from "../molecules/ImageItem";
+import ComponentLoader from "../organisms/ComponentLoader";
 
-const ImageList = ({ title, images }) => {
+const ImageList = ({ title, images, imageLoader }) => {
   return (
     <StyledIL>
       <div>
         <h2>{title}</h2>
       </div>
-      <div>
-        {images.length > 0
-          ? images.slice(0, 2).map(image => {
-              return (
-                <ImageItem
-                  key={image.id}
-                  imgSrc={image.urls.small}
-                  imageAuthor={image.user.name}
-                />
-              );
-            })
-          : null}
-      </div>
+      {imageLoader ? (
+        <ComponentLoader />
+      ) : (
+        <div>
+          {images.length > 0
+            ? images.slice(0, 2).map(image => {
+                return (
+                  <ImageItem
+                    key={image.id}
+                    imgSrc={image.urls.small}
+                    imageAuthor={image.user.name}
+                  />
+                );
+              })
+            : null}
+        </div>
+      )}
     </StyledIL>
   );
 };

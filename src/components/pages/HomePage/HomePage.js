@@ -10,7 +10,10 @@ const HomePage = ({
   images,
   videos,
   podcasts,
-  windowWidth
+  windowWidth,
+  imageLoader,
+  videoLoader,
+  podcastLoader
 }) => {
   return (
     <StyledHomePage>
@@ -18,9 +21,9 @@ const HomePage = ({
       <main>
         <SidebarContainer />
         <MediaContainer
-          images={images}
-          videos={videos}
-          podcasts={podcasts}
+          images={images} imageLoader={imageLoader}
+          videos={videos} videoLoader={videoLoader}
+          podcasts={podcasts} podcastLoader={podcastLoader}
           windowWidth={windowWidth}
         />
       </main>

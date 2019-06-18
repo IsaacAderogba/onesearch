@@ -32,9 +32,9 @@ const PodcastItem = ({
         <img src={imgSrc} alt={imgAlt} />
       </div>
       <div>
-        <h4>{videoTitle}</h4>
-        <span>{videoAuthor}</span>
-        <p>{videoDescription}</p>
+        <h4>{videoTitle.substring(0, 40)}</h4>
+        <span>{videoAuthor.substring(0, 20)}</span>
+        <p>{videoDescription.substring(0, 70)}</p>
       </div>
     </StyledPI>
   );
@@ -46,7 +46,6 @@ const StyledPI = styled(animated.article)`
   cursor: pointer;
   display: flex;
   border-radius: 4px;
-
 
   h4 {
     font-size: ${h4_font_size};
@@ -71,7 +70,7 @@ const StyledPI = styled(animated.article)`
 
   .img-container {
     width: 200px;
-    height: 100px;
+    height: 120px;
 
     img {
       width: inherit;

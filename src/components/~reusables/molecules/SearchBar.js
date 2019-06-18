@@ -12,6 +12,7 @@ const SearchBar = ({ placeholder, onSearchSubmit, history }) => {
   const onFormSubmit = event => {
     event.preventDefault();
     onSearchSubmit(term);
+    setTerm('');
     history.push("/");
   };
 

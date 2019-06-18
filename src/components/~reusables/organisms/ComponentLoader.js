@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { white, lightgrey } from "../variables/colors";
+import { white, theme_secondary } from "../variables/colors";
 
 const ComponentLoader = () => (
   <StyledLoader>
@@ -9,12 +9,18 @@ const ComponentLoader = () => (
 );
 
 const StyledLoader = styled.div`
+  height: 200px;
+  width: 100%;
+  background-color: ${white};
   display: flex;
+  
   justify-content: center;
   align-items: center;
 
   .lds-dual-ring {
     display: inline-block;
+    margin: 0 auto;
+
     width: 64px;
     height: 64px;
   }
@@ -25,10 +31,11 @@ const StyledLoader = styled.div`
     height: 46px;
     margin: 1px;
     border-radius: 50%;
-    border: 5px solid ${lightgrey};
-    border-color: #fff transparent #fff transparent;
+    border: 5px solid ${theme_secondary};
+    border-color: ${theme_secondary} transparent ${theme_secondary} transparent;
     animation: lds-dual-ring 1.2s linear infinite;
   }
+  
   @keyframes lds-dual-ring {
     0% {
       transform: rotate(0deg);
@@ -38,9 +45,7 @@ const StyledLoader = styled.div`
     }
   }
 
-  height: 100%;
-  width: 100%;
-  background-color: ${white};
+ 
 `;
 
 export default ComponentLoader;

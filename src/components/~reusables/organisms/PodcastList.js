@@ -3,8 +3,9 @@ import styled from "styled-components";
 import PodcastItem from "../molecules/PodcastItem.js";
 import { medium_space, normal_space } from "../variables/spacing";
 import { border_color } from "../variables/colors";
+import ComponentLoader from "../organisms/ComponentLoader"
 
-const PodcastList = ({ title, podcasts, windowWidth }) => {
+const PodcastList = ({ title, podcasts, windowWidth, podcastLoader }) => {
   let numPodcasts;
 
   if (windowWidth > 1250) {
@@ -22,7 +23,8 @@ const PodcastList = ({ title, podcasts, windowWidth }) => {
   return (
     <StyledPL>
       <h2>{title}</h2>
-      <div>
+
+      {podcastLoader ? <ComponentLoader /> : <div>
         {podcasts.length > 0
           ? podcasts.slice(0, numPodcasts).map(podcast => {
               return (
@@ -35,7 +37,7 @@ const PodcastList = ({ title, podcasts, windowWidth }) => {
               );
             })
           : null}
-      </div>
+      </div>}
     </StyledPL>
   );
 };

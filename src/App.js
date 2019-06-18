@@ -11,7 +11,9 @@ function App() {
   const [images, setImages] = useState([]);
   const [imageLoader, setImageLoader] = useState(true);
   const [videos, setVideos] = useState([]);
+  const [videoLoader, setVideoLoader] = useState(true);
   const [podcasts, setPodcasts] = useState([]);
+  const [podcastLoader, setPodcastLoader] = useState(true);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
   useEffect(() => {
@@ -19,51 +21,67 @@ function App() {
   });
 
   const onSearchSubmit = term => {
-    // unsplash
-    //   .get("/photos", {
-    //     params: { query: term }
-    //   })
-    //   .then(response => {
-    //     setImages(response.data.results);
-    //   })
-    //   .catch(err => {
-    //     console.log(err);
-    //   })
-    //   .finally(() => {
-    //     // to do
-    //   });
+    fetchImages(term);
+    fetchVideos(term);
+    fetchPodcasts(term);
+  };
 
-    // youtube
-    //   .get("/search", {
-    //     params: {
-    //       q: term
-    //     }
-    //   })
-    //   .then(response => {
-    //     setVideos(response.data.items);
-    //   })
-    //   .catch(err => {
-    //     console.log(err);
-    //   })
-    //   .finally(() => {
-    //     // to do
-    //   });
+  const fetchImages = term => {
+    setImageLoader(true);
 
-    // listen
-    //   .get("/search", {
-    //     params: {
-    //       q: term
-    //     }
-    //   })
-    //   .then(response => {
-    //     setPodcasts(response.data.results);
-    //   })
-    //   .catch(err => {
-    //     console.log(err);
-    //   })
-    //   .finally(() => {
-    //     // to do
-    //   });
+    unsplash
+      .get("/photos", {
+        params: { query: term }
+      })
+      .then(response => {
+        setImages(response.data.results);
+      })
+      .catch(err => {
+        console.log(err);
+      })
+      .finally(() => {
+        setImageLoader(false);
+      });
+  };
+
+  const fetchVideos = term => {
+    setVideoLoader(true);
+
+    youtube
+      .get("/search", {
+        params: {
+          q: term
+        }
+      })
+      .then(response => {
+        setVideos(response.data.items);
+      })
+      .catch(err => {
+        console.log(err);
+      })
+      .finally(() => {
+        setVideoLoader(false);
+      });
+  };
+
+  const fetchPodcasts = term => {
+    setPodcastLoader(true);
+
+    listen
+      .get("/search", {
+        params: {
+          q: term
+        }
+      })
+      .then(response => {
+        setPodcasts(response.data.results);
+      })
+      .catch(err => {
+        console.log(err);
+      })
+      .finally(() => {
+        setPodcastLoader(false);
+      });
   };
 
   return (
@@ -75,8 +93,11 @@ function App() {
           {...routeProps}
           onSearchSubmit={onSearchSubmit}
           images={images}
+          imageLoader={imageLoader}
           videos={videos}
+          videoLoader={videoLoader}
           podcasts={podcasts}
+          podcastLoader={podcastLoader}
           windowWidth={windowWidth}
         />
       )}
