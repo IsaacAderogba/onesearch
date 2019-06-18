@@ -1,33 +1,41 @@
 import React from "react";
 import styled from "styled-components";
 import { medium_space, normal_space } from "../variables/spacing";
-import { border_color } from "../variables/colors"
-import VideoItem from "../molecules/VideoItem"
-import ComponentLoader from "../organisms/ComponentLoader"
+import { border_color } from "../variables/colors";
+import VideoItem from "../molecules/VideoItem";
+import ComponentLoader from "../organisms/ComponentLoader";
+import { grey } from "../variables/colors";
 
 const VideoList = ({ title, videos, windowWidth, videoLoader }) => {
   let numVideos = 3;
-  if(windowWidth < 850) {
+  if (windowWidth < 850) {
     numVideos = 2;
   }
-  
+
   return (
     <StyledVL>
-      <h2>{title}</h2>
-      {videoLoader ? <ComponentLoader /> : 
-      videos.length > 0
-          ? videos.slice(0, numVideos).map(video => {
-              return (
-                <VideoItem
-                  key={video.id.videoId}
-                  videoTitle={video.snippet.title}
-                  videoAuthor={video.snippet.channelTitle}
-                  videoDescription={video.snippet.description}
-                  imgSrc={video.snippet.thumbnails.medium.url}
-                />
-              );
-            })
-          : null}
+      <div>
+        <h2>{title}</h2>
+        <div className="title-section">
+          <i className="material-icons">keyboard_arrow_left</i>
+          <i className="material-icons">keyboard_arrow_right</i>
+        </div>
+      </div>
+      {videoLoader ? (
+        <ComponentLoader />
+      ) : videos.length > 0 ? (
+        videos.slice(0, numVideos).map(video => {
+          return (
+            <VideoItem
+              key={video.id.videoId}
+              videoTitle={video.snippet.title}
+              videoAuthor={video.snippet.channelTitle}
+              videoDescription={video.snippet.description}
+              imgSrc={video.snippet.thumbnails.medium.url}
+            />
+          );
+        })
+      ) : null}
     </StyledVL>
   );
 };
@@ -39,19 +47,36 @@ const StyledVL = styled.section`
   padding: ${normal_space} ${normal_space} 0 ${medium_space};
   border-right: 1px solid ${border_color};
 
+  div {
+    display: flex;
+    justify-content: space-between;
+  }
 
-  overflow: hidden;
+  .title-section {
+    align-items: center;
+
+    i {
+      font-size: 30px;
+      cursor: pointer;
+      color: ${grey};
+    }
+
+    i:last-child {
+      margin-left: 8px;
+    }
+  }
 
   display: flex;
   flex-direction: column;
 
   h2 {
     font-size: 20px;
+    font-weight: 600;
+    color: ${grey};
   }
 
   @media only screen and (max-width: 749px) {
     padding: 0 ${normal_space};
-
   }
 
   @media only screen and (max-width: 499px) {

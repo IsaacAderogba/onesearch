@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { medium_space, normal_space } from "../variables/spacing";
+import { grey } from "../variables/colors"
 import ImageItem from "../molecules/ImageItem";
 import ComponentLoader from "../organisms/ComponentLoader";
 
@@ -9,6 +10,10 @@ const ImageList = ({ title, images, imageLoader }) => {
     <StyledIL>
       <div>
         <h2>{title}</h2>
+        <div className="title-section">
+          <i className="material-icons">keyboard_arrow_left</i>
+          <i className="material-icons">keyboard_arrow_right</i>
+        </div>
       </div>
       {imageLoader ? (
         <ComponentLoader />
@@ -38,8 +43,29 @@ const StyledIL = styled.section`
   padding: ${normal_space} ${medium_space} 0 ${normal_space};
   overflow: hidden;
 
+  div {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .title-section {
+    align-items: center;
+
+    i {
+      font-size: 30px;
+      cursor: pointer;
+      color: ${grey};
+    }
+
+    i:last-child {
+      margin-left: 8px;
+    }
+  }
+
   h2 {
     font-size: 20px;
+    font-weight: 600;
+    color: ${grey};
   }
 
   @media only screen and (max-width: 749px) {

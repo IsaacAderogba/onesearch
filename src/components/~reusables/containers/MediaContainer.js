@@ -16,19 +16,19 @@ const MediaContainer = ({
   return (
     <StyledMediaContainer>
       {<PodcastList
-        title="Podcast Results"
+        title="Podcasts"
         podcasts={podcasts}
         windowWidth={windowWidth}
         podcastLoader={podcastLoader}
       />}
       <div>
         <VideoList
-          title="Video Results"
+          title="Videos"
           videos={videos}
           windowWidth={windowWidth}
           videoLoader={videoLoader}
         />
-        <ImageList title="Image Results" images={images} imageLoader={imageLoader} />
+        <ImageList title="Images" images={images} imageLoader={imageLoader} />
       </div>
     </StyledMediaContainer>
   );
