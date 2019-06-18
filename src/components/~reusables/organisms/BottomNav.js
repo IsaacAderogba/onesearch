@@ -3,15 +3,13 @@ import styled from "styled-components";
 
 import NaviLink from "../molecules/NaviLink";
 import { border_color, theme_primary } from "../variables/colors";
-import favIcon from "../../images/fav-icon.png";
-import logoutIcon from "../../images/logout-icon.png";
 
 const TopNav = () => {
   return (
     <StyledDH>
-      <NaviLink link="/" backgroundColor={theme_primary} text="MB" />
-      <NaviLink link="/" imgSrc={favIcon} />
-      <NaviLink link="/" imgSrc={logoutIcon} />
+      <NaviLink link="/" activeColor={theme_primary} text="home" />
+      <NaviLink link="" activeColor={theme_primary} text="favorite_border" />
+      <NaviLink link="" activeColor={theme_primary} text="exit_to_app" />
     </StyledDH>
   );
 };

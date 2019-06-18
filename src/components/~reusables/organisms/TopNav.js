@@ -5,17 +5,15 @@ import Logo from "../molecules/Logo";
 import NaviLink from "../molecules/NaviLink";
 import SearchBar from "../molecules/SearchBar";
 import { border_color, theme_primary } from "../variables/colors";
-import favIcon from "../../images/fav-icon.png";
-import logoutIcon from "../../images/logout-icon.png";
 
 const TopNav = ({ onSearchSubmit }) => {
   return (
     <StyledDH>
       <Logo link="/" />
       <SearchBar onSearchSubmit={onSearchSubmit} placeholder="Search..." />
-      <NaviLink link="/" imgSrc={favIcon} />
-      <NaviLink link="/" imgSrc={logoutIcon} />
-      <NaviLink link="/" backgroundColor={theme_primary} text="MB" />
+      <NaviLink link="" activeColor={theme_primary} text="favorite_border" />
+      <NaviLink link="" activeColor={theme_primary} text="exit_to_app" />
+      <NaviLink link="/" activeColor={theme_primary} text="home" />
     </StyledDH>
   );
 };

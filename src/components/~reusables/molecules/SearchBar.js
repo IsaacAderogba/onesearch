@@ -4,14 +4,16 @@ import { h1_font_size } from "../variables/font-sizes";
 import { base_font_size } from "../variables/font-sizes";
 import { normal_space } from "../variables/spacing";
 import { white, border_color } from "../variables/colors";
+import { withRouter } from "react-router-dom";
 
-const SearchBar = ({ placeholder, onSearchSubmit }) => {
+const SearchBar = ({ placeholder, onSearchSubmit, history }) => {
   const [term, setTerm] = useState("");
 
   const onFormSubmit = event => {
-      event.preventDefault();
-      onSearchSubmit(term);
-  }
+    event.preventDefault();
+    onSearchSubmit(term);
+    history.push("/");
+  };
 
   return (
     <StyledSearchBar onSubmit={onFormSubmit}>
@@ -41,6 +43,7 @@ const StyledSearchBar = styled.form`
         padding-left: ${normal_space}
         flex-basis: 800px;
         height: 98%;
+        margin-bottom: 2%;
         font-size: ${base_font_size};
         flex-grow: 1;
         outline: none;
@@ -51,4 +54,4 @@ const StyledSearchBar = styled.form`
     }
 `;
 
-export default SearchBar;
+export default withRouter(SearchBar);
