@@ -29,64 +29,64 @@ const PodcastItem = ({ imgSrc, imgAlt, podcastTitle, podcastAuthor }) => {
       <div className="img-container">
         <img src={imgSrc} alt={imgAlt} />
       </div>
-      <h4>{podcastTitle.substring(0, 40)}</h4>
-      <p>{podcastAuthor.substring(0, 20)}</p>
+      <h4>{podcastTitle}</h4>
+      <p>{podcastAuthor.substring(0, 13)}</p>
     </StyledPI>
   );
 };
 
 const StyledPI = styled(animated.article)`
-    flex-basis: 148px;
-    margin-bottom: ${normal_space};
-    cursor: pointer;
-    border-radius: 4px;
+  flex-basis: 148px;
+  margin-bottom: ${normal_space};
+  cursor: pointer;
+  border-radius: 4px;
 
+  h4 {
+    font-size: ${h4_font_size};
+    font-weight: 600;
+    color: ${grey};
+    margin: ${small_space} 0 0 0;
+    padding: 0 ${small_space};
+  }
+
+  p {
+    font-size: ${small_font_size};
+    color: ${lightgrey};
+    padding: 0 ${small_space};
+  }
+
+  .img-container {
+    height: 148px;
+    width: 148px;
+
+    img {
+      height: inherit;
+      width: inherit;
+    }
+  }
+
+  @media only screen and (max-width: 499px) {
     h4 {
-        font-size: ${h4_font_size};
-        font-weight: 600;
-        color: ${grey};
-        margin: ${small_space} 0 0 0;
-        padding: 0 ${small_space}
+      font-size: ${h5_font_size};
     }
 
-    p {
-        font-size: ${small_font_size};
-        color: ${lightgrey};
-        padding: 0 ${small_space};
-    }
+    flex-basis: 100px;
+    border: 1px solid red;
 
     .img-container {
-        height: 148px
-        width: 148px;
-
-        img {
-            height: inherit;
-            width: inherit;
-        }
+      border: 1px solid red;
+      height: 100px;
+      width: 100px;
     }
+  }
 
-    @media only screen and (max-width: 499px) {
-        h4 {
-          font-size: ${h5_font_size};
-        }
-
-        flex-basis: 100px;
-
-        .img-container {
-          height: 100px;
-          width: 100px;
-
-        }
-    }
-
-    @media only screen and (max-width: 360px) {
-      flex-basis: 128px;
-      .img-container {
+  @media only screen and (max-width: 360px) {
+    flex-basis: 128px;
+    .img-container {
       height: 128px;
       width: 128px;
-      }
     }
-
+  }
 `;
 
 export default PodcastItem;

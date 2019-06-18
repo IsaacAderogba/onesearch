@@ -32,9 +32,9 @@ const PodcastItem = ({
         <img src={imgSrc} alt={imgAlt} />
       </div>
       <div>
-        <h4>{videoTitle.substring(0, 40)}</h4>
+        <h4>{videoTitle}</h4>
         <span>{videoAuthor.substring(0, 20)}</span>
-        <p>{videoDescription.substring(0, 70)}</p>
+        <p>{videoDescription}</p>
       </div>
     </StyledPI>
   );
