@@ -1,0 +1,61 @@
+import React from "react";
+import styled from "styled-components";
+import PodcastItem from "../molecules/PodcastItem.js";
+import { medium_space, normal_space } from "../variables/spacing";
+import { border_color } from "../variables/colors";
+
+const PodcastList = ({ title, podcasts, windowWidth }) => {
+  let numPodcasts;
+
+  if (windowWidth > 1250) {
+    numPodcasts = 6;
+  } else if (windowWidth > 1000) {
+    numPodcasts = 5;
+  } else if (windowWidth > 850) {
+    numPodcasts = 4;
+  } else if (windowWidth > 370) {
+    numPodcasts = 3;
+  } else if (windowWidth > 0) {
+    numPodcasts = 2;
+  }
+
+  return (
+    <StyledPL>
+      <h2>{title}</h2>
+      <div>
+        {podcasts.length > 0
+          ? podcasts.slice(0, numPodcasts).map(podcast => {
+              return (
+                <PodcastItem
+                  key={podcast.id}
+                  podcastTitle={podcast.title_original}
+                  podcastAuthor={podcast.publisher_original}
+                  imgSrc={podcast.thumbnail}
+                />
+              );
+            })
+          : null}
+      </div>
+    </StyledPL>
+  );
+};
+
+const StyledPL = styled.section`
+  padding: 0 ${medium_space};
+  border-bottom: 1px solid ${border_color};
+  overflow: hidden;
+
+  div {
+    display: flex;
+    justify-content: space-between;
+  }
+  h2 {
+    font-size: 20px;
+  }
+
+  @media only screen and (max-width: 749px) {
+    padding: 0 ${normal_space};
+  }
+`;
+
+export default PodcastList;
