@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { medium_space, normal_space } from "../variables/spacing";
-import { border_color } from "../variables/colors";
 import VideoItem from "../molecules/VideoItem";
 import ComponentLoader from "../organisms/ComponentLoader";
 import { lightgrey, grey, theme_secondary } from "../variables/colors";
