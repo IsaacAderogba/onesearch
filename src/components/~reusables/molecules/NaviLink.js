@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
-import { border_color, lightgrey } from "../variables/colors";
+import { border_color, lightgrey, theme_secondary } from "../variables/colors";
 
 const NaviLink = ({ link, activeColor, text }) => {
   return (
@@ -43,6 +43,10 @@ const StyledLink = styled.div`
     i {
       color: ${lightgrey};
       font-size: 30px;
+    }
+
+    i:hover {
+      color: ${theme_secondary};
     }
   }
 `;
