@@ -3,19 +3,19 @@ import styled from "styled-components";
 import TopNav from "../../~reusables/organisms/TopNav";
 import SidebarContainer from "../../~reusables/containers/SidebarContainer";
 import BottomNav from "../../~reusables/organisms/BottomNav";
-import MediaItemContainer from "../../~reusables/containers/MediaItemContainer"
+import MediaItemContainer from "../../~reusables/containers/MediaItemContainer";
 
-const MediaItemPage = ({
-  onSearchSubmit,
-  match
-}) => {
-    console.log(match)
+const MediaItemPage = ({ onSearchSubmit, match }) => {
+    
+
+
+  console.log(match);
   return (
     <StyledHomePage>
       <TopNav onSearchSubmit={onSearchSubmit} />
       <main>
         <SidebarContainer />
-        <MediaItemContainer />
+        <MediaItemContainer title="Name of Media Item" />
       </main>
       <BottomNav />
     </StyledHomePage>

@@ -6,7 +6,7 @@ import { lightgrey } from "../variables/colors";
 import { small_space, medium_space } from "../variables/spacing";
 import { useSpring, animated } from "react-spring";
 
-const ImageItem = ({ imgSrc, imgAlt, imageAuthor }) => {
+const ImageItem = ({ imgSrc, imgAlt, imageAuthor, id }) => {
   const [hovered, setHovered] = useState(false);
   const hoverEffect = useSpring({
     to: {
@@ -18,7 +18,7 @@ const ImageItem = ({ imgSrc, imgAlt, imageAuthor }) => {
   });
 
   return (
-    <StyledLink to="/image/1">
+    <StyledLink to={`/image/${id}`}>
       <StyledPI
         style={hoverEffect}
         onMouseOver={() => setHovered(true)}

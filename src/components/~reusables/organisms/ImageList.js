@@ -59,6 +59,7 @@ const ImageList = ({
                 return (
                   <ImageItem
                     key={image.id}
+                    id={image.id}
                     imgSrc={image.urls.small}
                     imageAuthor={image.user.name}
                   />

@@ -75,6 +75,7 @@ const PodcastList = ({
                   return (
                     <PodcastItem
                       key={podcast.id}
+                      id={podcast.id}
                       podcastTitle={podcast.title_original}
                       podcastAuthor={podcast.publisher_original}
                       imgSrc={podcast.thumbnail}

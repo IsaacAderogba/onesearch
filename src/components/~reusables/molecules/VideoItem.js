@@ -12,7 +12,8 @@ const PodcastItem = ({
   imgAlt,
   videoTitle,
   videoAuthor,
-  videoDescription
+  videoDescription,
+  id
 }) => {
   const [hovered, setHovered] = useState(false);
   const hoverEffect = useSpring({
@@ -25,7 +26,7 @@ const PodcastItem = ({
   });
 
   return (
-    <StyledLink to="/video/1">
+    <StyledLink to={`/video/${id}`}>
       <StyledPI
         style={hoverEffect}
         onMouseOver={() => setHovered(true)}

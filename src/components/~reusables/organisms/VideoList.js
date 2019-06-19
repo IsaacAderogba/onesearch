@@ -62,6 +62,7 @@ const VideoList = ({
           return (
             <VideoItem
               key={video.id.videoId}
+              id={video.id.videoId}
               videoTitle={video.snippet.title}
               videoAuthor={video.snippet.channelTitle}
               videoDescription={video.snippet.description}

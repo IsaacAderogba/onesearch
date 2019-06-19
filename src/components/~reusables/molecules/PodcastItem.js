@@ -11,7 +11,7 @@ import { grey, lightgrey } from "../variables/colors";
 import { small_space, normal_space } from "../variables/spacing";
 import { useSpring, animated } from "react-spring";
 
-const PodcastItem = ({ imgSrc, imgAlt, podcastTitle, podcastAuthor }) => {
+const PodcastItem = ({ imgSrc, imgAlt, podcastTitle, podcastAuthor, id }) => {
   const [hovered, setHovered] = useState(false);
   const hoverEffect = useSpring({
     to: {
@@ -23,7 +23,7 @@ const PodcastItem = ({ imgSrc, imgAlt, podcastTitle, podcastAuthor }) => {
   });
 
   return (
-    <StyledLink to="/podcast/1">
+    <StyledLink to={`/podcast/${id}`}>
       <StyledPI
         style={hoverEffect}
         onMouseOver={() => setHovered(true)}
@@ -40,7 +40,12 @@ const PodcastItem = ({ imgSrc, imgAlt, podcastTitle, podcastAuthor }) => {
 };
 
 const StyledLink = styled(Link)`
+display: block;
   text-decoration: none;
+  flex-basis: 148px;
+  margin-bottom: ${normal_space};
+  cursor: pointer;
+  border-radius: 4px;
 
   &:focus,
   &:hover,
@@ -52,10 +57,7 @@ const StyledLink = styled(Link)`
 `;
 
 const StyledPI = styled(animated.article)`
-  flex-basis: 148px;
-  margin-bottom: ${normal_space};
-  cursor: pointer;
-  border-radius: 4px;
+  
 
   h4 {
     font-size: ${h4_font_size};
