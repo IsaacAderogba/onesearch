@@ -71,6 +71,7 @@ const StyledMIContainer = styled.div`
     width: 100%;
     min-height: inherit;
     height: inherit;
+    border: none;
   }
 
   .main-content img {
@@ -95,6 +96,7 @@ const StyledMIContainer = styled.div`
   p.desc {
     color: {grey};
     font-size: ${base_font_size};
+    line-height: 150%;
   }
 
   h2 {

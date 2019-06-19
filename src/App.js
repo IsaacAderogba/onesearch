@@ -29,8 +29,8 @@ function App() {
 
   const onSearchSubmit = term => {
     setSearchTerm(term);
-    // fetchImages(term);
-    // fetchVideos(term);
+    fetchImages(term);
+    fetchVideos(term);
     fetchPodcasts(term);
   };
 
