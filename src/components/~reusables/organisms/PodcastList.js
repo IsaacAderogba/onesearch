@@ -91,7 +91,6 @@ const PodcastList = ({
 
 const StyledPL = styled.section`
   padding: 0 ${medium_space};
-  border-bottom: 1px solid ${border_color};
   overflow: hidden;
 
   div {

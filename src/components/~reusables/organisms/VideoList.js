@@ -79,7 +79,6 @@ const StyledVL = styled.section`
   flex-basis: 850px;
   flex-grow: 1;
   padding: ${normal_space} ${normal_space} 0 ${medium_space};
-  border-right: 1px solid ${border_color};
 
   > header {
     display: flex;
@@ -118,7 +117,6 @@ const StyledVL = styled.section`
 
   @media only screen and (max-width: 499px) {
     flex-basis: auto;
-    border-bottom: 1px solid ${border_color};
   }
 `;
 
