@@ -27,7 +27,7 @@ const VideoList = ({
 
   const onClickRightArrow = () => {
     if (videoIndex + numVideos * 2 >= videos.length) {
-      // setVideoIndex(0);
+      setVideoIndex(videoIndex + numVideos);
       fetchMoreVideos();
     } else {
       setVideoIndex(videoIndex + numVideos);

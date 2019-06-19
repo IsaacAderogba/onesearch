@@ -73,6 +73,7 @@ function App() {
         }
       })
       .then(response => {
+        console.log(response)
         setVideoPgToken(response.data.nextPageToken);
         setVideos(response.data.items);
       })

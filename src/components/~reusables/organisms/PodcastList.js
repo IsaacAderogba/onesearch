@@ -35,6 +35,7 @@ const PodcastList = ({
 
   const onClickRightArrow = () => {
     if (podcastIndex + numPodcasts * 2 >= podcasts.length) {
+      setPodcastIndex(podcastIndex + numPodcasts);
       fetchMorePodcasts();
     } else {
       setPodcastIndex(podcastIndex + numPodcasts);
