@@ -29,7 +29,7 @@ const PodcastItem = ({ imgSrc, imgAlt, podcastTitle, podcastAuthor }) => {
       <div className="img-container">
         <img src={imgSrc} alt={imgAlt} />
       </div>
-      <h4>{podcastTitle}</h4>
+      <h4>{podcastTitle.substring(0, 50)}</h4>
       <p>{podcastAuthor.substring(0, 13)}</p>
     </StyledPI>
   );

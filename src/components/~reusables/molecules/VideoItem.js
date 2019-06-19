@@ -32,9 +32,9 @@ const PodcastItem = ({
         <img src={imgSrc} alt={imgAlt} />
       </div>
       <div>
-        <h4>{videoTitle}</h4>
+        <h4>{videoTitle.substring(0, 70)}</h4>
         <span>{videoAuthor.substring(0, 20)}</span>
-        <p>{videoDescription}</p>
+        <p>{videoDescription.substring(0, 150)}</p>
       </div>
     </StyledPI>
   );
@@ -51,7 +51,7 @@ const StyledPI = styled(animated.article)`
     font-size: ${h4_font_size};
     font-weight: 600;
     color: ${grey};
-    margin: ${small_space} 0 0 0;
+    margin: 0;
     padding: 0 ${small_space};
   }
 
@@ -81,6 +81,10 @@ const StyledPI = styled(animated.article)`
 
   @media only screen and (max-width: 849px) {
     flex-direction: column;
+
+    h4 {
+      margin: ${small_space} 0 0 0;
+    }
 
     .img-container {
       width: 100%;
