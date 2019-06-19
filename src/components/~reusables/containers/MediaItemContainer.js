@@ -2,11 +2,11 @@ import React from "react";
 import styled from "styled-components";
 import { medium_space, normal_space } from "../variables/spacing";
 import { base_font_size, medium_font_size } from "../variables/font-sizes";
-import { grey, lightgrey } from "../variables/colors";
+import { grey, lightgrey, white } from "../variables/colors";
 import { withRouter } from "react-router-dom";
 
 const MediaItemContainer = ({ mediaItem, type, history }) => {
-  let title, img, author, desc, id;
+  let title, img, author, desc, src;
 
   if (mediaItem) {
     switch (type) {
@@ -15,21 +15,21 @@ const MediaItemContainer = ({ mediaItem, type, history }) => {
         img = mediaItem.snippet.thumbnails.high.url;
         author = mediaItem.snippet.channelTitle;
         desc = `${mediaItem.snippet.description} | from YouTube`;
-        id = `https://www.youtube.com/embed/${mediaItem.id.videoId}`;
+        src = `https://www.youtube.com/embed/${mediaItem.id.videoId}`;
         break;
       case "podcast":
         title = mediaItem.title_original;
         img = mediaItem.thumbnail;
         author = mediaItem.publisher_original;
         desc = `${mediaItem.description_original} | from ListenNotes`;
-        id = mediaItem.id;
+        src = mediaItem.audio;
         break;
       case "image":
         title = mediaItem.user.name;
         img = mediaItem.urls.regular;
         author = mediaItem.user.name;
         desc = `Author Bio: ${mediaItem.user.bio} | from Unsplash`;
-        id = mediaItem.id;
+        src = mediaItem.id;
         break;
       default:
     }
@@ -44,10 +44,11 @@ const MediaItemContainer = ({ mediaItem, type, history }) => {
     <StyledMIContainer>
       <h2>{title}</h2>
       <div className="main-content">
-        {type === "video" && <iframe title={title} src={id} />}
+        {type === "video" && <iframe title={title} src={src} />}
         {type === "podcast" && <img src={img} alt={title} />}
         {type === "image" && <img src={img} alt={title} />}
       </div>
+        {type === "podcast" && <audio controls><source src={src} /></audio>}
       <p className="author">{author}</p>
       <p className="desc">{desc}</p>
     </StyledMIContainer>
@@ -77,6 +78,13 @@ const StyledMIContainer = styled.div`
     min-height: inherit;
     height: inherit;
     object-fit: cover;
+  }
+
+  audio {
+      margin-top: ${normal_space};
+      width: 100%;
+      background: ${white};
+      outline: none;
   }
 
   p.author {
