@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Route } from "react-router-dom";
 import HomePage from "./components/pages/HomePage/HomePage";
+import MediaItemPage from "./components/pages/MediaItemPage/MediaItemPage";
 import "./App.css";
 import youtube from "./apis/youtube";
 import unsplash from "./apis/unsplash";
@@ -73,7 +74,7 @@ function App() {
         }
       })
       .then(response => {
-        console.log(response)
+        console.log(response);
         setVideoPgToken(response.data.nextPageToken);
         setVideos(response.data.items);
       })
@@ -136,27 +137,35 @@ function App() {
   };
 
   return (
-    <Route
-      exact
-      path="/"
-      render={routeProps => (
-        <HomePage
-          {...routeProps}
-          searchTerm={searchTerm}
-          onSearchSubmit={onSearchSubmit}
-          images={images}
-          imageLoader={imageLoader}
-          fetchMoreImages={fetchMoreImages}
-          videos={videos}
-          videoLoader={videoLoader}
-          podcasts={podcasts}
-          podcastLoader={podcastLoader}
-          windowWidth={windowWidth}
-          fetchMoreVideos={fetchMoreVideos}
-          fetchMorePodcasts={fetchMorePodcasts}
-        />
-      )}
-    />
+    <>
+      <Route
+        exact
+        path="/"
+        render={routeProps => (
+          <HomePage
+            {...routeProps}
+            searchTerm={searchTerm}
+            onSearchSubmit={onSearchSubmit}
+            images={images}
+            imageLoader={imageLoader}
+            fetchMoreImages={fetchMoreImages}
+            videos={videos}
+            videoLoader={videoLoader}
+            podcasts={podcasts}
+            podcastLoader={podcastLoader}
+            windowWidth={windowWidth}
+            fetchMoreVideos={fetchMoreVideos}
+            fetchMorePodcasts={fetchMorePodcasts}
+          />
+        )}
+      />
+      <Route
+        path="/:media/:id"
+        render={routeProps => (
+          <MediaItemPage {...routeProps} onSearchSubmit={onSearchSubmit} />
+        )}
+      />
+    </>
   );
 }
 
