@@ -17,6 +17,7 @@ function App() {
 
   const [podcasts, setPodcasts] = useState([]);
   const [podcastLoader, setPodcastLoader] = useState(true);
+  const [podPgToken, setPodPgToken] = useState(null);
 
   const [searchTerm, setSearchTerm] = useState("");
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
@@ -107,7 +108,26 @@ function App() {
         }
       })
       .then(response => {
+        setPodPgToken(response.data.next_offset);
         setPodcasts(response.data.results);
+      })
+      .finally(() => {
+        setPodcastLoader(false);
+      });
+  };
+
+  const fetchMorePodcasts = () => {
+    setPodcastLoader(true);
+    listen
+      .get("/search", {
+        params: {
+          q: searchTerm,
+          offset: podPgToken
+        }
+      })
+      .then(response => {
+        setPodPgToken(response.data.next_offset);
+        setPodcasts([...podcasts, ...response.data.results]);
       })
       .finally(() => {
         setPodcastLoader(false);
@@ -132,6 +152,7 @@ function App() {
           podcastLoader={podcastLoader}
           windowWidth={windowWidth}
           fetchMoreVideos={fetchMoreVideos}
+          fetchMorePodcasts={fetchMorePodcasts}
         />
       )}
     />

@@ -16,6 +16,7 @@ const HomePage = ({
   podcastLoader,
   fetchMoreImages,
   fetchMoreVideos,
+  fetchMorePodcasts,
   searchTerm
 }) => {
   return (
@@ -34,6 +35,7 @@ const HomePage = ({
           podcasts={podcasts}
           podcastLoader={podcastLoader}
           windowWidth={windowWidth}
+          fetchMorePodcasts={fetchMorePodcasts}
         />
       </main>
       <BottomNav />

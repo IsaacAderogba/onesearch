@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import PodcastItem from "../molecules/PodcastItem.js";
 import { medium_space, normal_space } from "../variables/spacing";
@@ -6,11 +6,21 @@ import { border_color } from "../variables/colors";
 import ComponentLoader from "../organisms/ComponentLoader";
 import { lightgrey, grey, theme_secondary } from "../variables/colors";
 
-const PodcastList = ({ title, podcasts, windowWidth, podcastLoader }) => {
+const PodcastList = ({
+  title,
+  podcasts,
+  windowWidth,
+  podcastLoader,
+  fetchMorePodcasts,
+  searchTerm
+}) => {
   const [podcastIndex, setPodcastIndex] = useState(0);
 
-  let numPodcasts;
+  useEffect(() => {
+    setPodcastIndex(0);
+  }, [searchTerm]);
 
+  let numPodcasts;
   if (windowWidth > 1250) {
     numPodcasts = 6;
   } else if (windowWidth > 1000) {
@@ -24,28 +34,32 @@ const PodcastList = ({ title, podcasts, windowWidth, podcastLoader }) => {
   }
 
   const onClickRightArrow = () => {
-    if(podcastIndex + numPodcasts*2 >= podcasts.length) {
-      console.log('Fetch more items !')
+    if (podcastIndex + numPodcasts * 2 >= podcasts.length) {
+      fetchMorePodcasts();
     } else {
       setPodcastIndex(podcastIndex + numPodcasts);
     }
-  }
+  };
 
   const onClickLeftArrow = () => {
-    if(podcastIndex - numPodcasts < 0) {
-      console.log('no more items!')
+    if (podcastIndex - numPodcasts < 0) {
+      console.log("no more items!");
     } else {
-      setPodcastIndex(podcastIndex - numPodcasts)
+      setPodcastIndex(podcastIndex - numPodcasts);
     }
-  }
+  };
 
   return (
     <StyledPL>
       <div>
         <h2>{title}</h2>
         <div className="title-section">
-          <i onClick={onClickLeftArrow} className="material-icons">keyboard_arrow_left</i>
-          <i onClick={onClickRightArrow} className="material-icons">keyboard_arrow_right</i>
+          <i onClick={onClickLeftArrow} className="material-icons">
+            keyboard_arrow_left
+          </i>
+          <i onClick={onClickRightArrow} className="material-icons">
+            keyboard_arrow_right
+          </i>
         </div>
       </div>
 
@@ -54,16 +68,18 @@ const PodcastList = ({ title, podcasts, windowWidth, podcastLoader }) => {
       ) : (
         <div>
           {podcasts.length > 0
-            ? podcasts.slice(podcastIndex, numPodcasts + podcastIndex).map(podcast => {
-                return (
-                  <PodcastItem
-                    key={podcast.id}
-                    podcastTitle={podcast.title_original}
-                    podcastAuthor={podcast.publisher_original}
-                    imgSrc={podcast.thumbnail}
-                  />
-                );
-              })
+            ? podcasts
+                .slice(podcastIndex, numPodcasts + podcastIndex)
+                .map(podcast => {
+                  return (
+                    <PodcastItem
+                      key={podcast.id}
+                      podcastTitle={podcast.title_original}
+                      podcastAuthor={podcast.publisher_original}
+                      imgSrc={podcast.thumbnail}
+                    />
+                  );
+                })
             : null}
         </div>
       )}
@@ -87,7 +103,7 @@ const StyledPL = styled.section`
     i {
       font-size: 30px;
       cursor: pointer;
-      color: ${lightgrey}
+      color: ${lightgrey};
     }
 
     i:last-child {
@@ -95,7 +111,7 @@ const StyledPL = styled.section`
     }
 
     i:hover {
-      color: ${theme_secondary}
+      color: ${theme_secondary};
     }
   }
 

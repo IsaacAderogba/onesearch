@@ -14,6 +14,7 @@ const MediaContainer = ({
   podcastLoader,
   fetchMoreImages,
   fetchMoreVideos,
+  fetchMorePodcasts,
   searchTerm
 }) => {
   return (
@@ -24,6 +25,7 @@ const MediaContainer = ({
           podcasts={podcasts}
           windowWidth={windowWidth}
           podcastLoader={podcastLoader}
+          fetchMorePodcasts={fetchMorePodcasts}
           searchTerm={searchTerm}
         />
       }
