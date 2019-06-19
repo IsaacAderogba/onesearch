@@ -27,7 +27,7 @@ const StyledDH = styled.nav`
     border-top: 1px solid ${border_color};
 
     bottom: 0;
-    position: sticky;
+    position: fixed;
   }
 `;
 

@@ -44,9 +44,11 @@ const HomePage = ({
 };
 
 const StyledHomePage = styled.div`
-  min-height: 100%;
   main {
     display: flex;
+    @media only screen and (max-width: 499px) {
+      margin-bottom: 60px;
+    }
   }
 `;
 

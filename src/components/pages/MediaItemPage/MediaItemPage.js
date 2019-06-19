@@ -6,7 +6,6 @@ import BottomNav from "../../~reusables/organisms/BottomNav";
 import MediaItemContainer from "../../~reusables/containers/MediaItemContainer";
 
 const MediaItemPage = ({ onSearchSubmit, match, videos, podcasts, images }) => {
-
   let mediaItem;
   switch (match.params.media) {
     case "video":
@@ -35,9 +34,11 @@ const MediaItemPage = ({ onSearchSubmit, match, videos, podcasts, images }) => {
 };
 
 const StyledMediaPage = styled.div`
-  min-height: 100%;
   main {
     display: flex;
+    @media only screen and (max-width: 499px) {
+      margin-bottom: 60px;
+    }
   }
 `;
 
