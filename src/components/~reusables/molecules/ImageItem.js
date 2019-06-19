@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 import { h4_font_size } from "../variables/font-sizes";
 import { lightgrey } from "../variables/colors";
 import { small_space, medium_space } from "../variables/spacing";
@@ -17,20 +18,34 @@ const ImageItem = ({ imgSrc, imgAlt, imageAuthor }) => {
   });
 
   return (
-    <StyledPI
-      style={hoverEffect}
-      onMouseOver={() => setHovered(true)}
-      onMouseOut={() => setHovered(false)}
-    >
-      <div className="img-container">
-        <img src={imgSrc} alt={imgAlt} />
-      </div>
-      <div>
-        <h4>{imageAuthor} | Unsplash</h4>
-      </div>
-    </StyledPI>
+    <StyledLink to="/image/1">
+      <StyledPI
+        style={hoverEffect}
+        onMouseOver={() => setHovered(true)}
+        onMouseOut={() => setHovered(false)}
+      >
+        <div className="img-container">
+          <img src={imgSrc} alt={imgAlt} />
+        </div>
+        <div>
+          <h4>{imageAuthor} | Unsplash</h4>
+        </div>
+      </StyledPI>
+    </StyledLink>
   );
 };
+
+const StyledLink = styled(Link)`
+  text-decoration: none;
+
+  &:focus,
+  &:hover,
+  &:visited,
+  &:link,
+  &:active {
+    text-decoration: none;
+  }
+`;
 
 const StyledPI = styled(animated.article)`
   flex-basis: 100px;
@@ -41,6 +56,7 @@ const StyledPI = styled(animated.article)`
   border-radius: 4px;
 
   h4 {
+    text-decoration: none;
     font-size: ${h4_font_size};
     font-weight: 400;
     color: ${lightgrey};
