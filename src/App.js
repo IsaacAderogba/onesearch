@@ -162,7 +162,13 @@ function App() {
       <Route
         path="/:media/:id"
         render={routeProps => (
-          <MediaItemPage {...routeProps} onSearchSubmit={onSearchSubmit} />
+          <MediaItemPage
+            {...routeProps}
+            onSearchSubmit={onSearchSubmit}
+            videos={videos}
+            podcasts={podcasts}
+            images={images}
+          />
         )}
       />
     </>
