@@ -107,10 +107,11 @@ const StyledMIContainer = styled.div`
   }
 
   @media only screen and (max-width: 499px) {
+    padding: 0 ${normal_space};
+
     .main-content {
         min-height: 35vh;
         height: 35vh;
-        padding: 0 ${normal_space};
     }
   }
 `;
