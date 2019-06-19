@@ -48,7 +48,11 @@ const MediaItemContainer = ({ mediaItem, type, history }) => {
         {type === "podcast" && <img src={img} alt={title} />}
         {type === "image" && <img src={img} alt={title} />}
       </div>
-        {type === "podcast" && <audio controls><source src={src} /></audio>}
+      {type === "podcast" && (
+        <audio controls>
+          <source src={src} />
+        </audio>
+      )}
       <p className="author">{author}</p>
       <p className="desc">{desc}</p>
     </StyledMIContainer>
@@ -63,8 +67,8 @@ const StyledMIContainer = styled.div`
 
   .main-content {
     width: 100%;
-    min-height: 60vh;
-    height: 60vh;
+    min-height: 70vh;
+    height: 70vh;
   }
 
   .main-content iframe {
