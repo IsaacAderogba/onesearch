@@ -44,6 +44,7 @@ const HomePage = ({
 };
 
 const StyledHomePage = styled.div`
+  min-height: 100%;
   main {
     display: flex;
   }

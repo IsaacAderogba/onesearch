@@ -23,18 +23,19 @@ const MediaItemPage = ({ onSearchSubmit, match, videos, podcasts, images }) => {
   }
 
   return (
-    <StyledHomePage>
+    <StyledMediaPage>
       <TopNav onSearchSubmit={onSearchSubmit} />
       <main>
         <SidebarContainer />
         <MediaItemContainer mediaItem={mediaItem} type={match.params.media} />
       </main>
       <BottomNav />
-    </StyledHomePage>
+    </StyledMediaPage>
   );
 };
 
-const StyledHomePage = styled.div`
+const StyledMediaPage = styled.div`
+  min-height: 100%;
   main {
     display: flex;
   }

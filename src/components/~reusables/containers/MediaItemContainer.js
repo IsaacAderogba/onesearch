@@ -48,11 +48,8 @@ const MediaItemContainer = ({ mediaItem, type, history }) => {
         {type === "podcast" && <img src={img} alt={title} />}
         {type === "image" && <img src={img} alt={title} />}
       </div>
-      {type === "podcast" && (
-        <audio controls>
-          <source src={src} />
-        </audio>
-      )}
+      {type === "podcast" && (<audio controls><source src={src} /></audio>)}
+      {type === "image" && <a href={img} download={img}>Download</a>}
       <p className="author">{author}</p>
       <p className="desc">{desc}</p>
     </StyledMIContainer>

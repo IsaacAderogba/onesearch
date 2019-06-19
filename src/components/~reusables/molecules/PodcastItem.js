@@ -40,7 +40,7 @@ const PodcastItem = ({ imgSrc, imgAlt, podcastTitle, podcastAuthor, id }) => {
 };
 
 const StyledLink = styled(Link)`
-display: block;
+  display: block;
   text-decoration: none;
   flex-basis: 148px;
   margin-bottom: ${normal_space};
