@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 import {
   h4_font_size,
   h5_font_size,
   small_font_size
 } from "../variables/font-sizes";
+
 import { grey, lightgrey } from "../variables/colors";
 import { small_space, normal_space } from "../variables/spacing";
 import { useSpring, animated } from "react-spring";
@@ -21,19 +23,33 @@ const PodcastItem = ({ imgSrc, imgAlt, podcastTitle, podcastAuthor }) => {
   });
 
   return (
-    <StyledPI
-      style={hoverEffect}
-      onMouseOver={() => setHovered(true)}
-      onMouseOut={() => setHovered(false)}
-    >
-      <div className="img-container">
-        <img src={imgSrc} alt={imgAlt} />
-      </div>
-      <h4>{podcastTitle.substring(0, 50)}</h4>
-      <p>{podcastAuthor.substring(0, 13)}</p>
-    </StyledPI>
+    <StyledLink to="/podcast/1">
+      <StyledPI
+        style={hoverEffect}
+        onMouseOver={() => setHovered(true)}
+        onMouseOut={() => setHovered(false)}
+      >
+        <div className="img-container">
+          <img src={imgSrc} alt={imgAlt} />
+        </div>
+        <h4>{podcastTitle.substring(0, 50)}</h4>
+        <p>{podcastAuthor.substring(0, 13)}</p>
+      </StyledPI>
+    </StyledLink>
   );
 };
+
+const StyledLink = styled(Link)`
+  text-decoration: none;
+
+  &:focus,
+  &:hover,
+  &:visited,
+  &:link,
+  &:active {
+    text-decoration: none;
+  }
+`;
 
 const StyledPI = styled(animated.article)`
   flex-basis: 148px;

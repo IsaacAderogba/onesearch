@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
+
 import { h4_font_size, small_font_size } from "../variables/font-sizes";
 import { grey, lightgrey } from "../variables/colors";
 import { small_space, medium_space } from "../variables/spacing";
@@ -23,22 +25,36 @@ const PodcastItem = ({
   });
 
   return (
-    <StyledPI
-      style={hoverEffect}
-      onMouseOver={() => setHovered(true)}
-      onMouseOut={() => setHovered(false)}
-    >
-      <div className="img-container">
-        <img src={imgSrc} alt={imgAlt} />
-      </div>
-      <div>
-        <h4>{videoTitle.substring(0, 70)}</h4>
-        <span>{videoAuthor.substring(0, 20)}</span>
-        <p>{videoDescription.substring(0, 150)}</p>
-      </div>
-    </StyledPI>
+    <StyledLink to="/video/1">
+      <StyledPI
+        style={hoverEffect}
+        onMouseOver={() => setHovered(true)}
+        onMouseOut={() => setHovered(false)}
+      >
+        <div className="img-container">
+          <img src={imgSrc} alt={imgAlt} />
+        </div>
+        <div>
+          <h4>{videoTitle.substring(0, 70)}</h4>
+          <span>{videoAuthor.substring(0, 20)}</span>
+          <p>{videoDescription.substring(0, 150)}</p>
+        </div>
+      </StyledPI>
+    </StyledLink>
   );
 };
+
+const StyledLink = styled(Link)`
+  text-decoration: none;
+
+  &:focus,
+  &:hover,
+  &:visited,
+  &:link,
+  &:active {
+    text-decoration: none;
+  }
+`;
 
 const StyledPI = styled(animated.article)`
   flex-basis: 100px;
