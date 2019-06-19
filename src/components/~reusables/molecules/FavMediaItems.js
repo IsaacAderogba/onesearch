@@ -4,8 +4,7 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { h4_font_size, small_font_size } from "../variables/font-sizes";
 import { normal_space, small_space } from "../variables/spacing";
-import { lightgrey} from "../variables/colors"
-
+import { lightgrey } from "../variables/colors";
 
 const FavMediaItems = ({ title }) => {
   return (
@@ -24,7 +23,7 @@ const FavMediaItems = ({ title }) => {
 const StyledFMI = styled.div`
   flex-basis: 220px;
   flex-grow: 0;
-  
+
   ul {
     list-style-type: none;
     padding: 0 ${normal_space};
@@ -34,7 +33,6 @@ const StyledFMI = styled.div`
   ul li {
     font-size: ${small_font_size};
     margin-top: ${small_space};
-
   }
 
   a {
@@ -43,7 +41,7 @@ const StyledFMI = styled.div`
     padding-left: ${small_space};
     display: block;
     text-decoration: none;
-    color: ${lightgrey}
+    color: ${lightgrey};
   }
 `;
 
