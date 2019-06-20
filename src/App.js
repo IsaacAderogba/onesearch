@@ -44,7 +44,7 @@ function App() {
         fetchImages('news')
         fetchVideos('news')
         fetchPodcasts('news')
-      }, 2000)
+      }, 500)
     }
   }, [images.length])
 
