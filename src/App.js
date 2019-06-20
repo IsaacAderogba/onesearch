@@ -39,7 +39,7 @@ function App() {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
   useEffect(() => {
-    if (podcasts.length <= 0) onSearchSubmit("news");
+    if (podcasts.length == 0) onSearchSubmit("news");
   }, []);
 
   useEffect(() => {
