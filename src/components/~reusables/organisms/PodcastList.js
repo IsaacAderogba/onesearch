@@ -99,6 +99,13 @@ const StyledPL = styled.section`
   div {
     display: flex;
     justify-content: space-between;
+
+    a {
+      margin-right: ${normal_space};
+    }
+    a:last-of-type {
+      margin-right: 0;
+    }
   }
 
   .title-section {

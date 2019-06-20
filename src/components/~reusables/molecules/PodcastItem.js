@@ -24,7 +24,7 @@ const PodcastItem = ({ imgSrc, imgAlt, podcastTitle, podcastAuthor, id }) => {
 
   return (
     <StyledLink to={`/podcast/${id}`}>
-      <StyledPI
+      <animated.article
         style={hoverEffect}
         onMouseOver={() => setHovered(true)}
         onMouseOut={() => setHovered(false)}
@@ -34,7 +34,7 @@ const PodcastItem = ({ imgSrc, imgAlt, podcastTitle, podcastAuthor, id }) => {
         </div>
         <h4>{podcastTitle.substring(0, 50)}</h4>
         <p>{podcastAuthor.substring(0, 13)}</p>
-      </StyledPI>
+      </animated.article>
     </StyledLink>
   );
 };
@@ -43,9 +43,9 @@ const StyledLink = styled(Link)`
   display: block;
   text-decoration: none;
   flex-basis: 148px;
+  flex-grow: 1;
   margin-bottom: ${normal_space};
   cursor: pointer;
-  border-radius: 4px;
 
   &:focus,
   &:hover,
@@ -54,10 +54,6 @@ const StyledLink = styled(Link)`
   &:active {
     text-decoration: none;
   }
-`;
-
-const StyledPI = styled(animated.article)`
-  
 
   h4 {
     font-size: ${h4_font_size};
@@ -71,15 +67,19 @@ const StyledPI = styled(animated.article)`
     font-size: ${small_font_size};
     color: ${lightgrey};
     padding: 0 ${small_space};
+    padding-bottom: ${small_space}
+  }
+
+  article {
+    border-radius: 4px;
   }
 
   .img-container {
-    height: 148px;
-    width: 148px;
+    height: auto;
 
     img {
       height: inherit;
-      width: inherit;
+      width: 100%;
     }
   }
 
@@ -87,21 +87,11 @@ const StyledPI = styled(animated.article)`
     h4 {
       font-size: ${h5_font_size};
     }
-
     flex-basis: 100px;
-
-    .img-container {
-      height: 100px;
-      width: 100px;
-    }
   }
 
   @media only screen and (max-width: 360px) {
     flex-basis: 128px;
-    .img-container {
-      height: 128px;
-      width: 128px;
-    }
   }
 `;
 
