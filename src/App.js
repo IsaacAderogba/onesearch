@@ -77,7 +77,6 @@ function App() {
   };
 
   const onSearchSubmit = term => {
-    console.log('executed');
     setSearchTerm(term);
     fetchImages(term);
     fetchVideos(term);
