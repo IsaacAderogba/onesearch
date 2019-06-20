@@ -12,19 +12,31 @@ const MediaItemPage = ({
   podcasts,
   images,
   favItems,
-  onAddToFavourite, 
+  onAddToFavourite,
   onRemoveFavourite
 }) => {
   let mediaItem;
   switch (match.params.media) {
     case "video":
-      mediaItem = videos.find(video => video.id.videoId === match.params.id);
+      mediaItem = favItems["videos"].find(
+        video => video.id.videoId === match.params.id
+      );
+      if (mediaItem === undefined)
+        mediaItem = videos.find(video => video.id.videoId === match.params.id);
       break;
     case "podcast":
-      mediaItem = podcasts.find(podcast => podcast.id === match.params.id);
+      mediaItem = favItems["podcasts"].find(
+        podcast => podcast.id === match.params.id
+      );
+      if (mediaItem === undefined)
+        mediaItem = podcasts.find(podcast => podcast.id === match.params.id);
       break;
     case "image":
-      mediaItem = images.find(image => image.id === match.params.id);
+      mediaItem = favItems["images"].find(
+        image => image.id === match.params.id
+      );
+      if (mediaItem === undefined)
+        mediaItem = images.find(image => image.id === match.params.id);
       break;
     default:
       mediaItem = "not found";
