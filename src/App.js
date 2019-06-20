@@ -20,12 +20,41 @@ function App() {
   const [podcastLoader, setPodcastLoader] = useState(true);
   const [podPgToken, setPodPgToken] = useState(null);
 
+  const [favItems, setFavItems] = useState({
+    images: [],
+    videos: [],
+    podcasts: []
+  });
   const [searchTerm, setSearchTerm] = useState("");
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
   useEffect(() => {
     window.addEventListener("resize", () => setWindowWidth(window.innerWidth));
   });
+
+  const onRemoveFavourite = (id, type) => {
+    let editedFavItem;
+    if (type in favItems) {
+      editedFavItem = favItems[type].filter(item => {
+        if (item.id.videoId) {
+          return item.id.videoId !== id;
+        }
+        return item.id !== id;
+      });
+    }
+
+    let newFavItems = { ...favItems, [type]: editedFavItem };
+    setFavItems(newFavItems);
+  };
+
+  const onAddToFavourite = (item, type) => {
+    let editedFavItem;
+    if (type in favItems) {
+      editedFavItem = [...favItems[type], item];
+    }
+    let newFavItems = { ...favItems, [type]: editedFavItem };
+    setFavItems(newFavItems);
+  };
 
   const onSearchSubmit = term => {
     setSearchTerm(term);
@@ -156,6 +185,7 @@ function App() {
             windowWidth={windowWidth}
             fetchMoreVideos={fetchMoreVideos}
             fetchMorePodcasts={fetchMorePodcasts}
+            favItems={favItems}
           />
         )}
       />
@@ -168,6 +198,9 @@ function App() {
             videos={videos}
             podcasts={podcasts}
             images={images}
+            favItems={favItems}
+            onAddToFavourite={onAddToFavourite}
+            onRemoveFavourite={onRemoveFavourite}
           />
         )}
       />

@@ -6,15 +6,42 @@ import { h4_font_size, small_font_size } from "../variables/font-sizes";
 import { normal_space, small_space } from "../variables/spacing";
 import { lightgrey } from "../variables/colors";
 
-const FavMediaItems = ({ title }) => {
+const FavMediaItems = ({ title, favItems, type }) => {
+  console.log(favItems);
+
+  // let itemsTitle;
+  // let itemsId;
+  // if (type) {
+  //   switch (type) {
+  //     case "videos":
+  //       itemsTitle = "snippet.title";
+  //       itemsId = "id.videoId"
+  //       break;
+  //     case "podcasts":
+  //       itemsTitle = "title_original";
+  //       itemsId = "id"
+  //       break;
+  //     case "images":
+  //       itemsTitle = "user.name";
+  //       itemsId = "id"
+  //       break;
+  //     default:
+  //   }
+  // }
+
   return (
     <StyledFMI>
       <Link to="/">{title}</Link>
       <ul>
-        <li>Media Item Title 1</li>
-        <li>Media Item Title 2</li>
-        <li>Media Item Title 3</li>
-        <li>Media Item Title 4</li>
+        {type === 'videos' ? favItems.slice(0, 4).map(item => {
+          return <li key={item.id.videoId}>{item.snippet.title}</li>;
+        }) : null }
+        {type === 'podcasts' ? favItems.slice(0, 4).map(item => {
+          return <li key={item.id}>{item.title_original}</li>;
+        }) : null }
+        {type === 'images' ? favItems.slice(0, 4).map(item => {
+          return <li key={item.id}>{item.user.name}</li>;
+        }) : null }
       </ul>
     </StyledFMI>
   );

@@ -17,13 +17,14 @@ const HomePage = ({
   fetchMoreImages,
   fetchMoreVideos,
   fetchMorePodcasts,
-  searchTerm
+  searchTerm,
+  favItems
 }) => {
   return (
     <StyledHomePage>
       <TopNav onSearchSubmit={onSearchSubmit} />
       <main>
-        <SidebarContainer />
+        <SidebarContainer favItems={favItems} />
         <MediaContainer
           searchTerm={searchTerm}
           images={images}

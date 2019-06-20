@@ -5,7 +5,16 @@ import SidebarContainer from "../../~reusables/containers/SidebarContainer";
 import BottomNav from "../../~reusables/organisms/BottomNav";
 import MediaItemContainer from "../../~reusables/containers/MediaItemContainer";
 
-const MediaItemPage = ({ onSearchSubmit, match, videos, podcasts, images }) => {
+const MediaItemPage = ({
+  onSearchSubmit,
+  match,
+  videos,
+  podcasts,
+  images,
+  favItems,
+  onAddToFavourite, 
+  onRemoveFavourite
+}) => {
   let mediaItem;
   switch (match.params.media) {
     case "video":
@@ -25,8 +34,13 @@ const MediaItemPage = ({ onSearchSubmit, match, videos, podcasts, images }) => {
     <StyledMediaPage>
       <TopNav onSearchSubmit={onSearchSubmit} />
       <main>
-        <SidebarContainer />
-        <MediaItemContainer mediaItem={mediaItem} type={match.params.media} />
+        <SidebarContainer favItems={favItems} />
+        <MediaItemContainer
+          mediaItem={mediaItem}
+          type={match.params.media}
+          onAddToFavourite={onAddToFavourite}
+          onRemoveFavourite={onRemoveFavourite}
+        />
       </main>
       <BottomNav />
     </StyledMediaPage>

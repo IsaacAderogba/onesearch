@@ -5,8 +5,14 @@ import { base_font_size, medium_font_size } from "../variables/font-sizes";
 import { grey, lightgrey, white, theme_secondary } from "../variables/colors";
 import { withRouter } from "react-router-dom";
 
-const MediaItemContainer = ({ mediaItem, type, history }) => {
-  let title, img, author, desc, src;
+const MediaItemContainer = ({
+  mediaItem,
+  type,
+  history,
+  onAddToFavourite,
+  onRemoveFavourite
+}) => {
+  let title, img, author, desc, src, id, itemType;
 
   if (mediaItem) {
     switch (type) {
@@ -16,6 +22,8 @@ const MediaItemContainer = ({ mediaItem, type, history }) => {
         author = mediaItem.snippet.channelTitle;
         desc = `${mediaItem.snippet.description} | from YouTube`;
         src = `https://www.youtube.com/embed/${mediaItem.id.videoId}`;
+        id = mediaItem.id.videoId;
+        itemType = "videos";
         break;
       case "podcast":
         title = mediaItem.title_original;
@@ -23,6 +31,8 @@ const MediaItemContainer = ({ mediaItem, type, history }) => {
         author = mediaItem.publisher_original;
         desc = `${mediaItem.description_original} | from ListenNotes`;
         src = mediaItem.audio;
+        id = mediaItem.id;
+        itemType = "podcasts";
         break;
       case "image":
         title = mediaItem.user.name;
@@ -30,6 +40,8 @@ const MediaItemContainer = ({ mediaItem, type, history }) => {
         author = mediaItem.user.name;
         desc = `Author Bio: ${mediaItem.user.bio} | from Unsplash`;
         src = mediaItem.id;
+        id = mediaItem.id;
+        itemType = "images";
         break;
       default:
     }
@@ -44,7 +56,18 @@ const MediaItemContainer = ({ mediaItem, type, history }) => {
     <StyledMIContainer>
       <header>
         <h2>{title}</h2>
-        <i className="material-icons">favorite_border</i>
+        <i
+          onClick={() => onRemoveFavourite(id, itemType)}
+          className="material-icons"
+        >
+          favorite_border
+        </i>
+        <i
+          onClick={() => onAddToFavourite(mediaItem, itemType)}
+          className="material-icons"
+        >
+          favorite_border
+        </i>
       </header>
       <div className="main-content">
         {type === "video" && <iframe title={title} src={src} />}
