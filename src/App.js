@@ -2,35 +2,49 @@ import React, { useState, useEffect } from "react";
 import { Route } from "react-router-dom";
 import HomePage from "./components/pages/HomePage/HomePage";
 import MediaItemPage from "./components/pages/MediaItemPage/MediaItemPage";
+import FavouritesPage from "./components/pages/FavouritesPage/FavouritesPage";
+import state from "./components/state/state";
 import "./App.css";
 import youtube from "./apis/youtube";
 import unsplash from "./apis/unsplash";
 import listen from "./apis/listenNotes";
 
 function App() {
-  const [images, setImages] = useState([]);
-  const [imageLoader, setImageLoader] = useState(true);
+  const [images, setImages] = useState(state.length > 0 ? state[0] : []);
+  const [imageLoader, setImageLoader] = useState(false);
   const [imgPage, setImgPage] = useState(1);
 
-  const [videos, setVideos] = useState([]);
-  const [videoLoader, setVideoLoader] = useState(true);
+  const [videos, setVideos] = useState(state.length > 0 ? state[1] : []);
+  const [videoLoader, setVideoLoader] = useState(false);
   const [videoPgToken, setVideoPgToken] = useState(null);
 
-  const [podcasts, setPodcasts] = useState([]);
-  const [podcastLoader, setPodcastLoader] = useState(true);
+  const [podcasts, setPodcasts] = useState(state.length > 0 ? state[2] : []);
+  const [podcastLoader, setPodcastLoader] = useState(false);
   const [podPgToken, setPodPgToken] = useState(null);
 
-  const [favItems, setFavItems] = useState({
-    images: [],
-    videos: [],
-    podcasts: []
-  });
-  const [searchTerm, setSearchTerm] = useState("");
+  const [favItems, setFavItems] = useState(
+    state.length > 0
+      ? state[3]
+      : {
+          images: [],
+          videos: [],
+          podcasts: []
+        }
+  );
+  const [searchTerm, setSearchTerm] = useState(
+    state.length > 0 ? state[4] : ""
+  );
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
   useEffect(() => {
     window.addEventListener("resize", () => setWindowWidth(window.innerWidth));
-  });
+    localStorage.clear();
+    localStorage.setItem(0, JSON.stringify(images));
+    localStorage.setItem(1, JSON.stringify(videos));
+    localStorage.setItem(2, JSON.stringify(podcasts));
+    localStorage.setItem(3, JSON.stringify(favItems));
+    localStorage.setItem(4, JSON.stringify(searchTerm));
+  }, [favItems, images, podcasts, searchTerm, videos]);
 
   const onRemoveFavourite = (id, type) => {
     let editedFavItem;
@@ -201,6 +215,22 @@ function App() {
             favItems={favItems}
             onAddToFavourite={onAddToFavourite}
             onRemoveFavourite={onRemoveFavourite}
+          />
+        )}
+      />
+      <Route
+        exact
+        path="/favourites"
+        render={routeProps => (
+          <FavouritesPage
+            {...routeProps}
+            searchTerm={searchTerm}
+            onSearchSubmit={onSearchSubmit}
+            imageLoader={imageLoader}
+            videoLoader={videoLoader}
+            podcastLoader={podcastLoader}
+            windowWidth={windowWidth}
+            favItems={favItems}
           />
         )}
       />

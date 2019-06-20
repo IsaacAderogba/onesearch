@@ -21,9 +21,13 @@ const ImageList = ({
   let numImages = 2;
 
   const onClickRightArrow = () => {
-    if (imageIndex + numImages * 2 >= images.length) {
-      setImageIndex(imageIndex + numImages);
-      fetchMoreImages();
+    if (fetchMoreImages) {
+      if (imageIndex + numImages * 2 >= images.length) {
+        setImageIndex(imageIndex + numImages);
+        fetchMoreImages();
+      } else {
+        setImageIndex(imageIndex + numImages);
+      }
     } else {
       setImageIndex(imageIndex + numImages);
     }

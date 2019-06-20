@@ -6,7 +6,7 @@ import { border_color, lightgrey, theme_secondary } from "../variables/colors";
 const NaviLink = ({ link, activeColor, text }) => {
   return (
     <StyledLink className="navlink" activeColor={activeColor}>
-      <NavLink to={link} activeClassName="active">
+      <NavLink exact to={link} activeClassName="active">
         <div>{text ? <i className="material-icons">{text}</i> : null}</div>
       </NavLink>
     </StyledLink>
