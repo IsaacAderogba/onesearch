@@ -75,6 +75,7 @@ const ImageList = ({
 const StyledIL = styled.section`
   flex-basis: 415px;
   flex-grow: 1;
+  flex-shrink: 4;
   padding: ${normal_space} ${medium_space} 0 ${normal_space};
   overflow: hidden;
 

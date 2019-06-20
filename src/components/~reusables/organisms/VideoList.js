@@ -77,6 +77,7 @@ const VideoList = ({
 const StyledVL = styled.section`
   flex-basis: 850px;
   flex-grow: 1;
+  flex-shrink: 5;
   padding: ${normal_space} ${normal_space} 0 ${medium_space};
 
   > header {

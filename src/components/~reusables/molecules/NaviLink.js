@@ -42,7 +42,7 @@ const StyledLink = styled.div`
 
     i {
       color: ${lightgrey};
-      font-size: 30px;
+      font-size: 24px;
     }
 
     i:hover {

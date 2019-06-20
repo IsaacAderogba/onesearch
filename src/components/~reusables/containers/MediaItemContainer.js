@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { medium_space, normal_space } from "../variables/spacing";
 import { base_font_size, medium_font_size } from "../variables/font-sizes";
-import { grey, lightgrey, white } from "../variables/colors";
+import { grey, lightgrey, white, theme_secondary } from "../variables/colors";
 import { withRouter } from "react-router-dom";
 
 const MediaItemContainer = ({ mediaItem, type, history }) => {
@@ -42,14 +42,25 @@ const MediaItemContainer = ({ mediaItem, type, history }) => {
 
   return (
     <StyledMIContainer>
-      <h2>{title}</h2>
+      <header>
+        <h2>{title}</h2>
+        <i className="material-icons">favorite_border</i>
+      </header>
       <div className="main-content">
         {type === "video" && <iframe title={title} src={src} />}
         {type === "podcast" && <img src={img} alt={title} />}
         {type === "image" && <img src={img} alt={title} />}
       </div>
-      {type === "podcast" && (<audio controls><source src={src} /></audio>)}
-      {type === "image" && <a href={img} download={img}>Download</a>}
+      {type === "podcast" && (
+        <audio controls>
+          <source src={src} />
+        </audio>
+      )}
+      {type === "image" && (
+        <a href={img} download={img}>
+          Download
+        </a>
+      )}
       <p className="author">{author}</p>
       <p className="desc">{desc}</p>
     </StyledMIContainer>
@@ -100,11 +111,29 @@ const StyledMIContainer = styled.div`
     line-height: 150%;
   }
 
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
   h2 {
     font-size: 20px;
     font-weight: 600;
     color: ${grey};
   }
+
+  i {
+      font-size: 30px;
+      cursor: pointer;
+      color: ${lightgrey};
+      margin-left: 8px;
+    }
+
+  i:hover {
+      color: ${theme_secondary};
+    }
+  }
+
 
   @media only screen and (max-width: 499px) {
     padding: 0 ${normal_space};
