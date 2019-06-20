@@ -9,26 +9,6 @@ import { lightgrey } from "../variables/colors";
 const FavMediaItems = ({ title, favItems, type }) => {
   console.log(favItems);
 
-  // let itemsTitle;
-  // let itemsId;
-  // if (type) {
-  //   switch (type) {
-  //     case "videos":
-  //       itemsTitle = "snippet.title";
-  //       itemsId = "id.videoId"
-  //       break;
-  //     case "podcasts":
-  //       itemsTitle = "title_original";
-  //       itemsId = "id"
-  //       break;
-  //     case "images":
-  //       itemsTitle = "user.name";
-  //       itemsId = "id"
-  //       break;
-  //     default:
-  //   }
-  // }
-
   return (
     <StyledFMI>
       <Link to="/">{title}</Link>

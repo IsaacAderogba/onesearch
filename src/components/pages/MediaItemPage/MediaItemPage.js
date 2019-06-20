@@ -36,6 +36,7 @@ const MediaItemPage = ({
       <main>
         <SidebarContainer favItems={favItems} />
         <MediaItemContainer
+          favItems={favItems}
           mediaItem={mediaItem}
           type={match.params.media}
           onAddToFavourite={onAddToFavourite}

@@ -2,7 +2,13 @@ import React from "react";
 import styled from "styled-components";
 import { medium_space, normal_space } from "../variables/spacing";
 import { base_font_size, medium_font_size } from "../variables/font-sizes";
-import { grey, lightgrey, white, theme_secondary } from "../variables/colors";
+import {
+  grey,
+  lightgrey,
+  white,
+  theme_secondary,
+  theme_primary
+} from "../variables/colors";
 import { withRouter } from "react-router-dom";
 
 const MediaItemContainer = ({
@@ -10,9 +16,11 @@ const MediaItemContainer = ({
   type,
   history,
   onAddToFavourite,
-  onRemoveFavourite
+  onRemoveFavourite,
+  favItems
 }) => {
   let title, img, author, desc, src, id, itemType;
+  let isFav = false;
 
   if (mediaItem) {
     switch (type) {
@@ -49,6 +57,14 @@ const MediaItemContainer = ({
     history.push("/");
   }
 
+  favItems[itemType].forEach(item => {
+    if (item.id.videoId) {
+      if (item.id.videoId === id) isFav = true;
+    } else {
+      if (item.id === id) isFav = true;
+    }
+  });
+
   console.log(mediaItem, type);
   console.log("title", title, "img", img, "author", author, "desc", desc);
 
@@ -56,18 +72,21 @@ const MediaItemContainer = ({
     <StyledMIContainer>
       <header>
         <h2>{title}</h2>
-        <i
-          onClick={() => onRemoveFavourite(id, itemType)}
-          className="material-icons"
-        >
-          favorite_border
-        </i>
-        <i
-          onClick={() => onAddToFavourite(mediaItem, itemType)}
-          className="material-icons"
-        >
-          favorite_border
-        </i>
+        {isFav ? (
+          <i
+            onClick={() => onRemoveFavourite(id, itemType)}
+            className="material-icons remove-fav"
+          >
+            favorite
+          </i>
+        ) : (
+          <i
+            onClick={() => onAddToFavourite(mediaItem, itemType)}
+            className="material-icons"
+          >
+            favorite_border
+          </i>
+        )}
       </header>
       <div className="main-content">
         {type === "video" && <iframe title={title} src={src} />}
@@ -151,6 +170,10 @@ const StyledMIContainer = styled.div`
       color: ${lightgrey};
       margin-left: 8px;
     }
+
+  i.remove-fav {
+    color: ${theme_primary}
+  }
 
   i:hover {
       color: ${theme_secondary};
