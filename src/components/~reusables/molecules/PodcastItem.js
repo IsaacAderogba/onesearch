@@ -44,6 +44,7 @@ const StyledLink = styled(Link)`
   text-decoration: none;
   flex-basis: 148px;
   flex-grow: 1;
+  max-width: 500px;
   margin-bottom: ${normal_space};
   cursor: pointer;
 
