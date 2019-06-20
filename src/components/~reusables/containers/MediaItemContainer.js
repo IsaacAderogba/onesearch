@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { medium_space, normal_space } from "../variables/spacing";
+import { medium_space, normal_space, small_space } from "../variables/spacing";
 import { base_font_size, medium_font_size } from "../variables/font-sizes";
 import {
   grey,
@@ -49,7 +49,7 @@ const MediaItemContainer = ({
         img = mediaItem.urls.regular;
         author = mediaItem.user.name;
         desc = `Author Bio: ${mediaItem.user.bio} | from Unsplash`;
-        src = mediaItem.id;
+        src = `${mediaItem.links.download}`;
         id = mediaItem.id;
         itemType = "images";
         break;
@@ -66,9 +66,6 @@ const MediaItemContainer = ({
   } else {
     history.push("/");
   }
-
-  console.log(mediaItem, type);
-  console.log("title", title, "img", img, "author", author, "desc", desc);
 
   return (
     <StyledMIContainer>
@@ -101,8 +98,8 @@ const MediaItemContainer = ({
         </audio>
       )}
       {type === "image" && (
-        <a href={img} download={img}>
-          Download
+        <a href={src} download={src}>
+          Download Image
         </a>
       )}
       <p className="author">{author}</p>
@@ -116,6 +113,22 @@ const StyledMIContainer = styled.div`
   padding: 0 ${medium_space};
   flex-grow: 1;
   flex-shrink: 1;
+
+  a {
+    display: block;
+    text-decoration: none;
+    background-color: ${white};
+    border: 1px solid ${grey};
+    padding: ${small_space};
+    border-radius: 8px;
+    color: ${grey};
+    margin: ${small_space} 24%;
+    text-align: center;
+  }
+
+  a:hover {
+    border-color: ${theme_secondary};
+  }
 
   .main-content {
     width: 100%;

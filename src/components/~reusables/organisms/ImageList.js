@@ -35,18 +35,22 @@ const ImageList = ({
 
   const onClickLeftArrow = () => {
     if (imageIndex - numImages < 0) {
-      console.log("no more items!");
     } else {
       setImageIndex(imageIndex - numImages);
     }
   };
+
+  let greyedOut;
+  if (imageIndex - numImages < 0) {
+    greyedOut = "greyed-out";
+  }
 
   return (
     <StyledIL>
       <header>
         <h2>{title}</h2>
         <div className="title-section">
-          <i onClick={onClickLeftArrow} className="material-icons">
+          <i onClick={onClickLeftArrow} className={`material-icons ${greyedOut}`}>
             keyboard_arrow_left
           </i>
           <i onClick={onClickRightArrow} className="material-icons">
@@ -102,6 +106,14 @@ const StyledIL = styled.section`
 
     i:hover {
       color: ${theme_secondary};
+    }
+
+    .greyed-out {
+      color: #d4d4d4;
+
+      &:hover {
+        color: #d4d4d4;
+      }
     }
   }
 

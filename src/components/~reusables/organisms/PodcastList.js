@@ -47,18 +47,25 @@ const PodcastList = ({
 
   const onClickLeftArrow = () => {
     if (podcastIndex - numPodcasts < 0) {
-      console.log("no more items!");
     } else {
       setPodcastIndex(podcastIndex - numPodcasts);
     }
   };
+
+  let greyedOut;
+  if (podcastIndex - numPodcasts < 0) {
+    greyedOut = "greyed-out";
+  }
 
   return (
     <StyledPL>
       <div>
         <h2>{title}</h2>
         <div className="title-section">
-          <i onClick={onClickLeftArrow} className="material-icons">
+          <i
+            onClick={onClickLeftArrow}
+            className={`material-icons ${greyedOut}`}
+          >
             keyboard_arrow_left
           </i>
           <i onClick={onClickRightArrow} className="material-icons">
@@ -123,6 +130,14 @@ const StyledPL = styled.section`
 
     i:hover {
       color: ${theme_secondary};
+    }
+
+    .greyed-out {
+      color: #d4d4d4;
+
+      &:hover {
+        color: #d4d4d4;
+      }
     }
   }
 

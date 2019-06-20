@@ -33,7 +33,7 @@ const PodcastItem = ({ imgSrc, imgAlt, podcastTitle, podcastAuthor, id }) => {
           <img src={imgSrc} alt={imgAlt} />
         </div>
         <h4>{podcastTitle.substring(0, 50)}</h4>
-        <p>{podcastAuthor.substring(0, 13)}</p>
+        <p>{podcastAuthor}</p>
       </animated.article>
     </StyledLink>
   );

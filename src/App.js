@@ -31,10 +31,16 @@ function App() {
           podcasts: []
         }
   );
+
   const [searchTerm, setSearchTerm] = useState(
     state.length > 0 ? state[4] : ""
   );
+  
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    if (localStorage.length <= 0) onSearchSubmit("news");
+  }, []);
 
   useEffect(() => {
     window.addEventListener("resize", () => setWindowWidth(window.innerWidth));

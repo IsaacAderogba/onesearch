@@ -45,12 +45,17 @@ const VideoList = ({
     }
   };
 
+  let greyedOut;
+  if (videoIndex - numVideos < 0) {
+    greyedOut = "greyed-out";
+  }
+
   return (
     <StyledVL>
       <header>
         <h2>{title}</h2>
         <div className="title-section">
-          <i onClick={onClickLeftArrow} className="material-icons">
+          <i onClick={onClickLeftArrow} className={`material-icons ${greyedOut}`}>
             keyboard_arrow_left
           </i>
           <i onClick={onClickRightArrow} className="material-icons">
@@ -103,6 +108,14 @@ const StyledVL = styled.section`
 
     i:hover {
       color: ${theme_secondary};
+    }
+
+    .greyed-out {
+      color: #d4d4d4;
+
+      &:hover {
+        color: #d4d4d4;
+      }
     }
   }
 
