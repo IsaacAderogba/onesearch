@@ -43,7 +43,9 @@ const MediaItemContainer = ({
         itemType = "podcasts";
         break;
       case "image":
-        title = mediaItem.user.name;
+        title = `${mediaItem.user.name} ${
+          mediaItem.alt_description ? mediaItem.alt_description : ""
+        }`;
         img = mediaItem.urls.regular;
         author = mediaItem.user.name;
         desc = `Author Bio: ${mediaItem.user.bio} | from Unsplash`;
@@ -53,17 +55,17 @@ const MediaItemContainer = ({
         break;
       default:
     }
+
+    favItems[itemType].forEach(item => {
+      if (item.id.videoId) {
+        if (item.id.videoId === id) isFav = true;
+      } else {
+        if (item.id === id) isFav = true;
+      }
+    });
   } else {
     history.push("/");
   }
-
-  favItems[itemType].forEach(item => {
-    if (item.id.videoId) {
-      if (item.id.videoId === id) isFav = true;
-    } else {
-      if (item.id === id) isFav = true;
-    }
-  });
 
   console.log(mediaItem, type);
   console.log("title", title, "img", img, "author", author, "desc", desc);
@@ -162,6 +164,7 @@ const StyledMIContainer = styled.div`
     font-size: 20px;
     font-weight: 600;
     color: ${grey};
+    text-transform: capitalize;
   }
 
   i {

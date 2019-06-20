@@ -11,7 +11,7 @@ const TopNav = ({ onSearchSubmit }) => {
     <StyledDH>
       <Logo link="/" />
       <SearchBar onSearchSubmit={onSearchSubmit} placeholder="Search..." />
-      <NaviLink link="" activeColor={theme_primary} text="favorite_border" />
+      <NaviLink link="/favourites" activeColor={theme_primary} text="favorite_border" />
       <NaviLink link="" activeColor={theme_primary} text="exit_to_app" />
       <NaviLink link="/" activeColor={theme_primary} text="home" />
     </StyledDH>

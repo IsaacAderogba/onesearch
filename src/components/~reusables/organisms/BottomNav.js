@@ -8,7 +8,7 @@ const TopNav = () => {
   return (
     <StyledDH>
       <NaviLink link="/" activeColor={theme_primary} text="home" />
-      <NaviLink link="" activeColor={theme_primary} text="favorite_border" />
+      <NaviLink link="/favourites" activeColor={theme_primary} text="favorite_border" />
       <NaviLink link="" activeColor={theme_primary} text="exit_to_app" />
     </StyledDH>
   );
