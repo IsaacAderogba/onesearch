@@ -11,15 +11,15 @@ import listen from "./apis/listenNotes";
 
 function App() {
   const [images, setImages] = useState(state.length > 0 ? state[0] : []);
-  const [imageLoader, setImageLoader] = useState(false);
+  const [imageLoader, setImageLoader] = useState(true);
   const [imgPage, setImgPage] = useState(1);
 
   const [videos, setVideos] = useState(state.length > 0 ? state[1] : []);
-  const [videoLoader, setVideoLoader] = useState(false);
+  const [videoLoader, setVideoLoader] = useState(true);
   const [videoPgToken, setVideoPgToken] = useState(null);
 
   const [podcasts, setPodcasts] = useState(state.length > 0 ? state[2] : []);
-  const [podcastLoader, setPodcastLoader] = useState(false);
+  const [podcastLoader, setPodcastLoader] = useState(true);
   const [podPgToken, setPodPgToken] = useState(null);
 
   const [favItems, setFavItems] = useState(
@@ -39,8 +39,14 @@ function App() {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
   useEffect(() => {
-    if (podcasts.length == 0) onSearchSubmit("news");
-  }, []);
+    if(images.length <= 0) {
+      setTimeout(() => {
+        fetchImages('news')
+        fetchVideos('news')
+        fetchPodcasts('news')
+      }, 2000)
+    }
+  }, [images.length])
 
   useEffect(() => {
     window.addEventListener("resize", () => setWindowWidth(window.innerWidth));
@@ -78,6 +84,7 @@ function App() {
 
   const onSearchSubmit = term => {
     setSearchTerm(term);
+    setVideos([1])
     fetchImages(term);
     fetchVideos(term);
     fetchPodcasts(term);
