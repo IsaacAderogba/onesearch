@@ -11,15 +11,15 @@ import listen from "./apis/listenNotes";
 
 function App() {
   const [images, setImages] = useState(state.length > 0 ? state[0] : []);
-  const [imageLoader, setImageLoader] = useState(true);
+  const [imageLoader, setImageLoader] = useState(false);
   const [imgPage, setImgPage] = useState(1);
 
   const [videos, setVideos] = useState(state.length > 0 ? state[1] : []);
-  const [videoLoader, setVideoLoader] = useState(true);
+  const [videoLoader, setVideoLoader] = useState(false);
   const [videoPgToken, setVideoPgToken] = useState(null);
 
   const [podcasts, setPodcasts] = useState(state.length > 0 ? state[2] : []);
-  const [podcastLoader, setPodcastLoader] = useState(true);
+  const [podcastLoader, setPodcastLoader] = useState(false);
   const [podPgToken, setPodPgToken] = useState(null);
 
   const [favItems, setFavItems] = useState(
